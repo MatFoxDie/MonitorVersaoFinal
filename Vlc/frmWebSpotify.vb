@@ -25,12 +25,21 @@ Public Class frmWebSpotify
             WebView21.Dock = DockStyle.Fill
             WebView21.Source = _autenticador.GetLoginUrl()
 
+            ClearBrowserCache()
+
             AddHandler WebView21.NavigationCompleted, AddressOf WebView21_NavigationCompleted
             AddHandler WebView21.NavigationStarting, AddressOf WebView21_NavigationStarting
             AddHandler WebView21.SourceChanged, AddressOf WebView21_SourceChanged
         Catch ex As Exception
             Console.WriteLine("Erro ao configurar controles: " & ex.Message)
         End Try
+    End Sub
+
+
+    Private Async Sub ClearBrowserCache()
+
+        Await WebView21.CoreWebView2.Profile.ClearBrowsingDataAsync()
+
     End Sub
 
     Private Sub WebView21_SourceChanged(sender As Object, e As CoreWebView2SourceChangedEventArgs)

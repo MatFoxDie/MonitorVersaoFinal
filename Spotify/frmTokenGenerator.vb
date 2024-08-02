@@ -52,6 +52,11 @@ Public Class frmTokenGenerator
             Dim uriResponse As String = txtUriResposta.Text
             Dim token As Token = _autenticadorSpotify.GetAcessTokenByUrlCode(uriResponse)
             Dim tokenString As String = "{""access_token"":"" " & token.Access_token & " "",""token_type"":""Bearer"",""expires_in"":3600,""refresh_token"":""" & token.Refresh_token & """,""scope"":""playlist-read-private playlist-read-collaborative user-follow-read playlist-modify-private user-read-email user-read-private app-remote-control streaming user-modify-playback-state user-follow-modify user-library-read user-library-modify playlist-modify-public user-read-playback-state user-read-currently-playing user-read-recently-played user-read-playback-position user-top-read""}"
+
+            config.ClientId = txtClientId.Text
+            config.ClientSecret = txtClientSecret.Text
+            config.RedirectUri = txtRedirectUri.Text
+
             config.Token = tokenString
 
             _xmlManager.SaveConfig(config)
