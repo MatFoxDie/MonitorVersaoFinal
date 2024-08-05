@@ -30,6 +30,7 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.pnlPrincipal = new System.Windows.Forms.Panel();
+            this.btnExit = new System.Windows.Forms.Button();
             this.pbLogo = new System.Windows.Forms.PictureBox();
             this.btnConfiguracao = new System.Windows.Forms.Button();
             this.pnlTexto = new System.Windows.Forms.Panel();
@@ -39,7 +40,7 @@
             this.lblTitulo = new System.Windows.Forms.Label();
             this.tblpPrincipal = new System.Windows.Forms.TableLayoutPanel();
             this.pnlTableLayoutPanel2 = new System.Windows.Forms.Panel();
-            this.btnExit = new System.Windows.Forms.Button();
+            this.spotifyIcon = new System.Windows.Forms.Button();
             this.pnlPainelInferior.SuspendLayout();
             this.tblPainelInferior.SuspendLayout();
             this.pnlCotacao.SuspendLayout();
@@ -101,7 +102,7 @@
             this.lbMoedaCentro.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lbMoedaCentro.BackColor = System.Drawing.Color.Black;
-            this.lbMoedaCentro.Font = new System.Drawing.Font("Arial Rounded MT Bold", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbMoedaCentro.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbMoedaCentro.ForeColor = System.Drawing.Color.White;
             this.lbMoedaCentro.Location = new System.Drawing.Point(-1, -3);
             this.lbMoedaCentro.Margin = new System.Windows.Forms.Padding(2, 8, 1, 0);
@@ -126,7 +127,7 @@
             this.lbMoedaEsquerda.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lbMoedaEsquerda.AutoEllipsis = true;
             this.lbMoedaEsquerda.BackColor = System.Drawing.Color.Black;
-            this.lbMoedaEsquerda.Font = new System.Drawing.Font("Arial Rounded MT Bold", 18F);
+            this.lbMoedaEsquerda.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F);
             this.lbMoedaEsquerda.ForeColor = System.Drawing.Color.White;
             this.lbMoedaEsquerda.Location = new System.Drawing.Point(-13, -3);
             this.lbMoedaEsquerda.Margin = new System.Windows.Forms.Padding(0);
@@ -153,7 +154,7 @@
             // 
             this.lblTemperaturaCidade.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.lblTemperaturaCidade.BackColor = System.Drawing.Color.Black;
-            this.lblTemperaturaCidade.Font = new System.Drawing.Font("Arial Rounded MT Bold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTemperaturaCidade.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTemperaturaCidade.ForeColor = System.Drawing.Color.White;
             this.lblTemperaturaCidade.Location = new System.Drawing.Point(-3, 37);
             this.lblTemperaturaCidade.Margin = new System.Windows.Forms.Padding(2, 8, 1, 0);
@@ -167,7 +168,7 @@
             // 
             this.lblDescricaoClima.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.lblDescricaoClima.BackColor = System.Drawing.Color.Black;
-            this.lblDescricaoClima.Font = new System.Drawing.Font("Arial Rounded MT Bold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDescricaoClima.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblDescricaoClima.ForeColor = System.Drawing.Color.White;
             this.lblDescricaoClima.Location = new System.Drawing.Point(-3, -3);
             this.lblDescricaoClima.Margin = new System.Windows.Forms.Padding(2, 8, 1, 0);
@@ -208,6 +209,7 @@
             this.pnlPrincipal.BackColor = System.Drawing.Color.Black;
             this.pnlPrincipal.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pnlPrincipal.BackgroundImage")));
             this.pnlPrincipal.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pnlPrincipal.Controls.Add(this.spotifyIcon);
             this.pnlPrincipal.Controls.Add(this.btnExit);
             this.pnlPrincipal.Controls.Add(this.pbLogo);
             this.pnlPrincipal.Controls.Add(this.btnConfiguracao);
@@ -218,6 +220,22 @@
             this.pnlPrincipal.Name = "pnlPrincipal";
             this.pnlPrincipal.Size = new System.Drawing.Size(960, 500);
             this.pnlPrincipal.TabIndex = 0;
+            // 
+            // btnExit
+            // 
+            this.btnExit.BackColor = System.Drawing.Color.Transparent;
+            this.btnExit.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnExit.BackgroundImage")));
+            this.btnExit.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnExit.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnExit.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.btnExit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnExit.ForeColor = System.Drawing.SystemColors.ActiveBorder;
+            this.btnExit.Location = new System.Drawing.Point(12, 12);
+            this.btnExit.Name = "btnExit";
+            this.btnExit.Size = new System.Drawing.Size(35, 35);
+            this.btnExit.TabIndex = 19;
+            this.btnExit.UseVisualStyleBackColor = false;
+            this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
             // 
             // pbLogo
             // 
@@ -289,7 +307,7 @@
             this.btnTema.BackColor = System.Drawing.Color.Red;
             this.btnTema.FlatAppearance.BorderSize = 0;
             this.btnTema.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnTema.Font = new System.Drawing.Font("Cooper Black", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnTema.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnTema.ForeColor = System.Drawing.Color.White;
             this.btnTema.Location = new System.Drawing.Point(56, 71);
             this.btnTema.Name = "btnTema";
@@ -305,7 +323,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lblTitulo.AutoEllipsis = true;
             this.lblTitulo.BackColor = System.Drawing.Color.Transparent;
-            this.lblTitulo.Font = new System.Drawing.Font("Cooper Black", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTitulo.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTitulo.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.lblTitulo.Location = new System.Drawing.Point(52, 137);
             this.lblTitulo.Name = "lblTitulo";
@@ -340,21 +358,21 @@
             this.pnlTableLayoutPanel2.Size = new System.Drawing.Size(960, 500);
             this.pnlTableLayoutPanel2.TabIndex = 0;
             // 
-            // btnExit
+            // spotifyIcon
             // 
-            this.btnExit.BackColor = System.Drawing.Color.Transparent;
-            this.btnExit.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnExit.BackgroundImage")));
-            this.btnExit.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnExit.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnExit.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnExit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnExit.ForeColor = System.Drawing.SystemColors.ActiveBorder;
-            this.btnExit.Location = new System.Drawing.Point(12, 12);
-            this.btnExit.Name = "btnExit";
-            this.btnExit.Size = new System.Drawing.Size(35, 35);
-            this.btnExit.TabIndex = 19;
-            this.btnExit.UseVisualStyleBackColor = false;
-            this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
+            this.spotifyIcon.BackColor = System.Drawing.Color.Transparent;
+            this.spotifyIcon.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("spotifyIcon.BackgroundImage")));
+            this.spotifyIcon.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.spotifyIcon.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.spotifyIcon.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.spotifyIcon.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.spotifyIcon.ForeColor = System.Drawing.SystemColors.ActiveBorder;
+            this.spotifyIcon.Location = new System.Drawing.Point(94, 12);
+            this.spotifyIcon.Name = "spotifyIcon";
+            this.spotifyIcon.Size = new System.Drawing.Size(35, 35);
+            this.spotifyIcon.TabIndex = 20;
+            this.spotifyIcon.UseVisualStyleBackColor = false;
+            this.spotifyIcon.Click += new System.EventHandler(this.spotifyIcon_Click);
             // 
             // PainelNoticias
             // 
@@ -407,5 +425,6 @@
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.PictureBox pbLogo;
         internal System.Windows.Forms.Button btnExit;
+        internal System.Windows.Forms.Button spotifyIcon;
     }
 }

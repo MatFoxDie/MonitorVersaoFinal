@@ -63,6 +63,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="clsClimaTempo.cs" />
+    <Compile Include="Controls\CircularProgressBar.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Forms\PainelNoticias.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -107,6 +110,10 @@
     <ProjectReference Include="..\MonitorVersaoFinal\PainelConfiguracoes.csproj">
       <Project>{b8515298-1d61-4416-943d-cfcdc7a1e6e9}</Project>
       <Name>PainelConfiguracoes</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Spotify\Spotify.vbproj">
+      <Project>{41d0a59c-e27f-4b7b-813e-f15d8d610aa3}</Project>
+      <Name>Spotify</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup />

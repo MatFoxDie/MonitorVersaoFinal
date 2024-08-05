@@ -17,6 +17,9 @@ Public Class frmTokenGenerator
             txtClientId.Text = config.ClientId
             txtClientSecret.Text = config.ClientSecret
             txtRedirectUri.Text = config.RedirectUri
+
+
+
         Catch ex As Exception
             Console.WriteLine(ex.Message)
         End Try

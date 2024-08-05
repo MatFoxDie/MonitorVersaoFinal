@@ -37,6 +37,7 @@ namespace PainelNoticias
         private int _tempoAtualizacaoMoeda;
         private int _tempoAtualizacaoPainel;
         private int _tempoAtualizacaoClima;
+        private CircularProgressBar _progressBar;
 
         public PainelNoticias(INewsService newsService)
         {
@@ -55,6 +56,16 @@ namespace PainelNoticias
 
             _climaTimer = new Timer();
             _climaTimer.Tick += ClimaTimer_Tick;
+
+            // Inicialize a barra de progresso circular
+            _progressBar = new CircularProgressBar
+            {
+                Width = 100,
+                Height = 100,
+                BackColor = Color.Transparent
+            };
+            pnQrCode.Controls.Add(_progressBar);
+            _progressBar.BringToFront();
         }
 
         private async void Form1_Load(object sender, EventArgs e)
@@ -165,6 +176,7 @@ namespace PainelNoticias
             {
                 pnQrCode.Visible = true;
                 pnQrCode.BackgroundImage = imageQr;
+                _progressBar.Start();
             }
             else
             {
@@ -491,6 +503,12 @@ namespace PainelNoticias
             {
                 Application.Exit();
             }
+        }
+
+        private void spotifyIcon_Click(object sender, EventArgs e)
+        {
+            Spotify.frmTokenGenerator spotify = new Spotify.frmTokenGenerator();
+            spotify.Show();
         }
     }
 }
