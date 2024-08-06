@@ -34,9 +34,10 @@ Partial Class frmWebSpotify
         Me.WebView21.AllowExternalDrop = True
         Me.WebView21.CreationProperties = Nothing
         Me.WebView21.DefaultBackgroundColor = System.Drawing.Color.White
-        Me.WebView21.Location = New System.Drawing.Point(0, 66)
+        Me.WebView21.Location = New System.Drawing.Point(0, 54)
+        Me.WebView21.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
         Me.WebView21.Name = "WebView21"
-        Me.WebView21.Size = New System.Drawing.Size(863, 758)
+        Me.WebView21.Size = New System.Drawing.Size(647, 616)
         Me.WebView21.TabIndex = 1
         Me.WebView21.ZoomFactor = 1.0R
         '
@@ -45,19 +46,21 @@ Partial Class frmWebSpotify
         Me.WebView22.AllowExternalDrop = True
         Me.WebView22.CreationProperties = Nothing
         Me.WebView22.DefaultBackgroundColor = System.Drawing.Color.White
-        Me.WebView22.Location = New System.Drawing.Point(362, 254)
+        Me.WebView22.Location = New System.Drawing.Point(272, 206)
+        Me.WebView22.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
         Me.WebView22.Name = "WebView22"
-        Me.WebView22.Size = New System.Drawing.Size(8, 8)
+        Me.WebView22.Size = New System.Drawing.Size(6, 6)
         Me.WebView22.TabIndex = 2
         Me.WebView22.ZoomFactor = 1.0R
         '
         'frmWebSpotify
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(866, 826)
+        Me.ClientSize = New System.Drawing.Size(650, 671)
         Me.Controls.Add(Me.WebView22)
         Me.Controls.Add(Me.WebView21)
+        Me.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
         Me.Name = "frmWebSpotify"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Login com Spotify"

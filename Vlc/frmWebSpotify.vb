@@ -127,5 +127,7 @@ Public Class frmWebSpotify
         WebView21.CoreWebView2.Navigate(_spotifyHomeUrl)
     End Sub
 
-
+    Private Sub frmWebSpotify_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        Me.TopMost() = True
+    End Sub
 End Class

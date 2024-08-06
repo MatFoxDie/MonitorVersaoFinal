@@ -43,8 +43,14 @@ Public Class frmVLC
     Private Function IsSpotifyConfigFilled() As Boolean
         Try
             Dim NomeProjetoVlc = "Spotify"
-            Dim diretorioSolucao As String = Path.GetDirectoryName(Path.GetDirectoryName(Path.GetDirectoryName(Application.StartupPath)))
-            Dim configPathSpotify As String = diretorioSolucao & $"\{NomeProjetoVlc}\Config\Config.xml"
+            'Verifica se tem pasta Config criada se nao cria
+            If Not Directory.Exists(Path.Combine(Directory.GetCurrentDirectory(), NomeProjetoVlc, "Config")) Then
+                Directory.CreateDirectory(Path.Combine(Directory.GetCurrentDirectory(), NomeProjetoVlc, "Config"))
+            End If
+
+            'Salva no path atual da bin com uma pasta chamada Config e um arquivo chamado config.xml
+            Dim configPathSpotify As String = Path.Combine(Directory.GetCurrentDirectory(), NomeProjetoVlc, "Config", "config.xml")
+
 
             If Not File.Exists(configPathSpotify) Then
                 Return False

@@ -33,9 +33,10 @@ Partial Class frmConfig
         '
         Me.lblModoAleatorio.AutoSize = True
         Me.lblModoAleatorio.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblModoAleatorio.Location = New System.Drawing.Point(12, 43)
+        Me.lblModoAleatorio.Location = New System.Drawing.Point(9, 35)
+        Me.lblModoAleatorio.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.lblModoAleatorio.Name = "lblModoAleatorio"
-        Me.lblModoAleatorio.Size = New System.Drawing.Size(135, 20)
+        Me.lblModoAleatorio.Size = New System.Drawing.Size(117, 17)
         Me.lblModoAleatorio.TabIndex = 0
         Me.lblModoAleatorio.Text = "Modo Aleatório"
         '
@@ -45,26 +46,29 @@ Partial Class frmConfig
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.flpCategorias.AutoScroll = True
         Me.flpCategorias.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.flpCategorias.Location = New System.Drawing.Point(12, 111)
+        Me.flpCategorias.Location = New System.Drawing.Point(9, 90)
+        Me.flpCategorias.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
         Me.flpCategorias.Name = "flpCategorias"
-        Me.flpCategorias.Size = New System.Drawing.Size(633, 249)
+        Me.flpCategorias.Size = New System.Drawing.Size(475, 203)
         Me.flpCategorias.TabIndex = 1
         '
         'lblSelecioneCategorias
         '
         Me.lblSelecioneCategorias.AutoSize = True
-        Me.lblSelecioneCategorias.Location = New System.Drawing.Point(12, 88)
+        Me.lblSelecioneCategorias.Location = New System.Drawing.Point(9, 72)
+        Me.lblSelecioneCategorias.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.lblSelecioneCategorias.Name = "lblSelecioneCategorias"
-        Me.lblSelecioneCategorias.Size = New System.Drawing.Size(156, 16)
+        Me.lblSelecioneCategorias.Size = New System.Drawing.Size(123, 13)
         Me.lblSelecioneCategorias.TabIndex = 2
         Me.lblSelecioneCategorias.Text = "Selecione as categorias:"
         '
         'btnConfirmar
         '
         Me.btnConfirmar.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.btnConfirmar.Location = New System.Drawing.Point(545, 507)
+        Me.btnConfirmar.Location = New System.Drawing.Point(409, 412)
+        Me.btnConfirmar.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
         Me.btnConfirmar.Name = "btnConfirmar"
-        Me.btnConfirmar.Size = New System.Drawing.Size(100, 29)
+        Me.btnConfirmar.Size = New System.Drawing.Size(75, 24)
         Me.btnConfirmar.TabIndex = 3
         Me.btnConfirmar.Text = "Confirmar"
         Me.btnConfirmar.UseVisualStyleBackColor = True
@@ -72,23 +76,25 @@ Partial Class frmConfig
         'btnCancelar
         '
         Me.btnCancelar.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.btnCancelar.Location = New System.Drawing.Point(428, 507)
+        Me.btnCancelar.Location = New System.Drawing.Point(321, 412)
+        Me.btnCancelar.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
         Me.btnCancelar.Name = "btnCancelar"
-        Me.btnCancelar.Size = New System.Drawing.Size(100, 29)
+        Me.btnCancelar.Size = New System.Drawing.Size(75, 24)
         Me.btnCancelar.TabIndex = 4
         Me.btnCancelar.Text = "Cancelar"
         Me.btnCancelar.UseVisualStyleBackColor = True
         '
         'frmConfig
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(672, 549)
+        Me.ClientSize = New System.Drawing.Size(504, 446)
         Me.Controls.Add(Me.btnCancelar)
         Me.Controls.Add(Me.btnConfirmar)
         Me.Controls.Add(Me.lblSelecioneCategorias)
         Me.Controls.Add(Me.flpCategorias)
         Me.Controls.Add(Me.lblModoAleatorio)
+        Me.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
         Me.Name = "frmConfig"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Configurações"

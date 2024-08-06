@@ -170,4 +170,8 @@ Public Class frmConfig
     Private Sub btnCancelar_Click(sender As Object, e As EventArgs) Handles btnCancelar.Click
         Me.Close()
     End Sub
+
+    Private Sub frmConfig_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        Me.TopMost() = True
+    End Sub
 End Class
