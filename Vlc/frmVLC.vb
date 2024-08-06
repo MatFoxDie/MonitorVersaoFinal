@@ -1,6 +1,7 @@
 ﻿Imports System.Drawing.Drawing2D
 Imports System.IO
 Imports System.Net
+Imports Spotify
 Imports Spotify.Spotify.Api
 Imports Spotify.Spotify.Api.Models
 Imports Vlc.DotNet.Forms
@@ -18,16 +19,83 @@ Public Class frmVLC
     Public _cardManager As CardManager
     Public _player As IPlayer
     Private _browser As frmWebSpotify
+    Public fechadoForcado As Boolean
     Sub New()
         InitializeComponent()
         ConfigControls()
         _spotifyApi = New SpotifyApi()
         _cardManager = New CardManager(flpCards, Me)
-        CarregarCategoryCards()
-        _player = New AsLocalPlayer(Me, _spotifyApi)
 
-        AddHandler pnlDescricao.Click, AddressOf pnlDescricao_Click
-        AddHandler picCurrentPlaying.Click, AddressOf picCurrentPlaying_Click
+        If Not IsSpotifyConfigFilled() Then
+            OpenConfigForm()
+        Else
+
+
+            'CarregarCategoryCards()
+            _player = New AsLocalPlayer(Me, _spotifyApi)
+
+            AddHandler pnlDescricao.Click, AddressOf pnlDescricao_Click
+            AddHandler picCurrentPlaying.Click, AddressOf picCurrentPlaying_Click
+
+        End If
+    End Sub
+
+    Private Function IsSpotifyConfigFilled() As Boolean
+        Try
+            Dim NomeProjetoVlc = "Spotify"
+            Dim diretorioSolucao As String = Path.GetDirectoryName(Path.GetDirectoryName(Path.GetDirectoryName(Application.StartupPath)))
+            Dim configPathSpotify As String = diretorioSolucao & $"\{NomeProjetoVlc}\Config\Config.xml"
+
+            If Not File.Exists(configPathSpotify) Then
+                Return False
+            End If
+
+            Dim doc As XDocument = XDocument.Load(configPathSpotify)
+            Dim clientId As String = doc.Root.Element("ClientId").Value
+            Dim clientSecret As String = doc.Root.Element("ClientSecret").Value
+            Dim redirectUri As String = doc.Root.Element("RedirectUri").Value
+            Dim token As String = doc.Root.Element("Token").Value
+
+            If String.IsNullOrWhiteSpace(clientId) OrElse
+           String.IsNullOrWhiteSpace(clientSecret) OrElse
+           String.IsNullOrWhiteSpace(redirectUri) OrElse
+           String.IsNullOrWhiteSpace(token) Then
+                Return False
+            End If
+
+            Return True
+        Catch ex As Exception
+            Console.WriteLine(ex.Message)
+            Return False
+        End Try
+    End Function
+
+    Private Sub OpenConfigForm()
+        Try
+            MessageBox.Show("As configurações do Spotify não estão preenchidas. Por favor, preencha as configurações.")
+            Dim formConfig As New frmTokenGenerator()
+            formConfig.ShowDialog()
+
+            ' Após fechar o formulário de configuração, verifique novamente
+            If Not IsSpotifyConfigFilled() Then
+                fechadoForcado = formConfig.FechadoForcado
+                If fechadoForcado Then
+                    Me.Dispose()
+                    Return
+                End If
+                OpenConfigForm() ' Continue mostrando o formulário até que esteja preenchido
+            Else
+                _spotifyApi = New SpotifyApi()
+                _cardManager = New CardManager(flpCards, Me)
+                CarregarCategoryCards()
+                _player = New AsLocalPlayer(Me, _spotifyApi)
+
+                AddHandler pnlDescricao.Click, AddressOf pnlDescricao_Click
+                AddHandler picCurrentPlaying.Click, AddressOf picCurrentPlaying_Click
+            End If
+        Catch ex As Exception
+            Console.WriteLine(ex.Message)
+        End Try
     End Sub
 
     Public Property IPlayer As IPlayer
@@ -313,6 +381,18 @@ Public Class frmVLC
             Console.WriteLine(ex.Message)
         End Try
     End Sub
+
+    Public Function ReturnCurrentTrack() As String
+        Try
+            If lblCurrentTrack.Text.Equals("Música") Or lblCurrentTrack.Equals("") Then
+                Return "Nenhuma música tocando"
+            End If
+
+            Return "Música Atual:" & lblCurrentTrack.Text
+        Catch ex As Exception
+            Return "Nenhuma música tocando"
+        End Try
+    End Function
 
     Public Sub HandleFeateredPlaylistsClick()
         Try
@@ -659,5 +739,9 @@ Public Class frmVLC
             Console.WriteLine(ex.Message)
         End Try
 
+    End Sub
+
+    Private Sub Sair_Click(sender As Object, e As EventArgs) Handles Sair.Click
+        Me.Visible = False
     End Sub
 End Class

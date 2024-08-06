@@ -111,9 +111,9 @@
       <Project>{b8515298-1d61-4416-943d-cfcdc7a1e6e9}</Project>
       <Name>PainelConfiguracoes</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Spotify\Spotify.vbproj">
-      <Project>{41d0a59c-e27f-4b7b-813e-f15d8d610aa3}</Project>
-      <Name>Spotify</Name>
+    <ProjectReference Include="..\Vlc\Vlc.vbproj">
+      <Project>{376c9aa3-75cc-4616-8e42-e13b53b07664}</Project>
+      <Name>Vlc</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup />

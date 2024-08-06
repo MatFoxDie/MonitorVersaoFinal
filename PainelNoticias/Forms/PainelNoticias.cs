@@ -20,6 +20,7 @@ using Newtonsoft.Json;
 using MonitorVersaoFinal.Models;
 using System.Text.RegularExpressions;
 using System.Globalization;
+using vlcPlayer;
 
 
 namespace PainelNoticias
@@ -33,11 +34,14 @@ namespace PainelNoticias
         private Timer _moedaTimer;
         private Timer _painelTimer;
         private Timer _climaTimer;
+        private Timer _spotifyTimer;
         private int _tempoAtualizacaoNoticias;
         private int _tempoAtualizacaoMoeda;
         private int _tempoAtualizacaoPainel;
         private int _tempoAtualizacaoClima;
+        private int _tempoAtualizacaoSpotify;
         private CircularProgressBar _progressBar;
+        frmVLC frmVLC;
 
         public PainelNoticias(INewsService newsService)
         {
@@ -57,24 +61,34 @@ namespace PainelNoticias
             _climaTimer = new Timer();
             _climaTimer.Tick += ClimaTimer_Tick;
 
+            _spotifyTimer = new Timer();
+            _spotifyTimer.Tick += SpotifyTimer_Tick;
+
             // Inicialize a barra de progresso circular
+
+
             _progressBar = new CircularProgressBar
             {
-                Width = 100,
-                Height = 100,
+                Width = (int)(pnQrCode.Width * 1.35),
+                Height = (int)(pnQrCode.Height * 1.35),
                 BackColor = Color.Transparent
             };
-            pnQrCode.Controls.Add(_progressBar);
-            _progressBar.BringToFront();
+          
+            pnlQrCodeFora.Controls.Add(_progressBar);
+            _progressBar.Dock = DockStyle.Fill;
+
         }
 
         private async void Form1_Load(object sender, EventArgs e)
         {
 
+            await LoadConfiguracoesAsync();
+
             if (_tempoAtualizacaoMoeda.Equals(0))
-                _moedaTimer.Interval = 30000;
+                _moedaTimer.Interval = 30000 / 2;
             else
-                _moedaTimer.Interval = _tempoAtualizacaoMoeda;
+                _moedaTimer.Interval = _tempoAtualizacaoMoeda / 2;
+
             _moedaTimer.Start();
 
             if (_tempoAtualizacaoPainel.Equals(0))
@@ -95,7 +109,6 @@ namespace PainelNoticias
 
             RoundButton(btnTema);
 
-            await LoadConfiguracoesAsync();
             await LoadNewsAsync();
             DisplayCurrentNews();
             if (_tempoAtualizacaoNoticias.Equals(0))
@@ -270,9 +283,35 @@ namespace PainelNoticias
             }
             DisplayCurrentNews();
         }
+        bool moeda = false;
         private void MoedaTimer_Tick(object sender, EventArgs e)
         {
-            ConsultaCambio();
+            if (moeda == false)
+            {
+                ConsultaCambio();
+                moeda = true;
+            }
+            else
+            {
+                if (frmVLC != null)
+                {
+                    if (!frmVLC.ReturnCurrentTrack().Equals("") || !frmVLC.ReturnCurrentTrack().Equals("Nenhuma música tocando"))
+                    {
+                        lbMoedaCentro.Text = frmVLC.ReturnCurrentTrack();
+                    }
+                    else
+                    {
+                        ConsultaCambio();
+                    }
+                }
+                else
+                {
+                    ConsultaCambio();
+                }
+
+                moeda = false;
+            }
+            
         }
 
         private void PainelTimer_Tick(object sender, EventArgs e)
@@ -286,6 +325,10 @@ namespace PainelNoticias
             lblDescricaoClima.Text = clima.DescricaoClima;
             lblTemperaturaCidade.Text = "SP, " + clima.Temperatura + "°C";
             pictureBox1.Image = clima.Image;
+        }
+        private void SpotifyTimer_Tick(object sender, EventArgs e)
+        {
+            
         }
 
         private void AtualizarPainel()
@@ -406,6 +449,7 @@ namespace PainelNoticias
                     strUltimaAtualizacao = strUltimaAtualizacao.Replace("@", "h");
 
                     lbMoedaCentro.Text = strMoeda;
+                   
                 }
                 catch (Exception exBacen)
                 {
@@ -483,7 +527,7 @@ namespace PainelNoticias
 
         private void btnConfiguracao_Click(object sender, EventArgs e)
         {
-            frmConfig configForm = new frmConfig(new XmlReaderService(), new ComboBoxService());
+            frmConfigPainel configForm = new frmConfigPainel(new XmlReaderService(), new ComboBoxService());
 
             // Define o evento que será executado quando o Form2 for fechado
             configForm.FormClosedEvent += ReniciarNoticias;
@@ -507,8 +551,28 @@ namespace PainelNoticias
 
         private void spotifyIcon_Click(object sender, EventArgs e)
         {
-            Spotify.frmTokenGenerator spotify = new Spotify.frmTokenGenerator();
-            spotify.Show();
+            if (frmVLC == null)
+            {
+                frmVLC = new frmVLC();
+                if(frmVLC != null)
+                {
+                    if (!frmVLC.fechadoForcado)
+                    {
+                        frmVLC.Show();
+                    }else
+                    {
+                        frmVLC = null;
+                    }
+                       
+                }
+                
+            }
+            else
+            {
+                frmVLC.Visible = true;
+
+            }
+           
         }
     }
 }

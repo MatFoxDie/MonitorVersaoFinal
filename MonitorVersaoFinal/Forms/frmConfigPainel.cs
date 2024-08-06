@@ -13,14 +13,14 @@ using System.Xml.Linq;
 
 namespace MonitorVersaoFinal.Forms
 {
-    public partial class frmConfig : Form
+    public partial class frmConfigPainel : Form
     {
         private readonly IXmlReaderService _xmlService;
         private readonly IComboBoxService _comboBoxService;
         private int IndiceFonte;
         private int IndiceTema;
 
-        public frmConfig(IXmlReaderService xmlService, IComboBoxService comboBoxService)
+        public frmConfigPainel(IXmlReaderService xmlService, IComboBoxService comboBoxService)
         {
             InitializeComponent();
             _xmlService = xmlService;
@@ -387,9 +387,12 @@ namespace MonitorVersaoFinal.Forms
             SumirTodosBotoesConfirmacao(3);
             cbFontesRss.Items.Clear();
             cbFontesRss.Text = "";
+            cbFontesRss.Enabled = true;
             cbTemas.Items.Clear();
             cbTemas.Text = "";
+            btnCor.Enabled = false;
             chkAtivoFonte.Enabled = false;
+            chkAtivoTema.Enabled = false;
             cbTemas.DropDownStyle = ComboBoxStyle.DropDownList;
             txtUrl.Text = "";
             txtUrl.ReadOnly = true;

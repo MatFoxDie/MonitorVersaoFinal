@@ -23,7 +23,7 @@ namespace MonitorVersaoFinal
             IXmlReaderService xmlReaderService = new XmlReaderService();
             IComboBoxService comboBoxService = new ComboBoxService();
 
-            Application.Run(new frmConfig(xmlReaderService, comboBoxService));
+            Application.Run(new frmConfigPainel(xmlReaderService, comboBoxService));
 
         }
     }

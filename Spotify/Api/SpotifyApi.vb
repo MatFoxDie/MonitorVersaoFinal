@@ -28,13 +28,34 @@ Namespace Spotify.Api
         End Sub
 
         Private Sub ReadXml()
+            Try
+                Dim xmlManager As New XmlManager()
+                Dim config As Config = xmlManager.GetConfig()
+
+                If config Is Nothing Then
+                    CreateXMLEmpty()
+
+                    config = xmlManager.GetConfig()
+                End If
+                ClientId = config.ClientId
+                ClientSecret = config.ClientSecret
+                redirect_uri = config.RedirectUri
+                Dim tokenAsJason = config.Token
+                Token = Token.GetFromJson(tokenAsJason)
+            Catch ex As Exception
+            End Try
+
+        End Sub
+
+        Private Sub CreateXMLEmpty()
             Dim xmlManager As New XmlManager()
-            Dim config As Config = xmlManager.GetConfig()
-            ClientId = config.ClientId
-            ClientSecret = config.ClientSecret
-            redirect_uri = config.RedirectUri
-            Dim tokenAsJason = config.Token
-            Token = Token.GetFromJson(tokenAsJason)
+            Dim config As New Config()
+            config.ClientId = ""
+            config.ClientSecret = ""
+            config.RedirectUri = ""
+            config.Token = ""
+            xmlManager.SaveConfig(config)
+
         End Sub
         Function GetAlbumById(AlbumId As String) As Album
             Try

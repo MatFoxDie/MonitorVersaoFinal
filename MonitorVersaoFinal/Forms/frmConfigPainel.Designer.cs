@@ -1,6 +1,6 @@
 ﻿namespace MonitorVersaoFinal.Forms
 {
-    partial class frmConfig
+    partial class frmConfigPainel
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmConfig));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmConfigPainel));
             this.pnlConfiguracaoRSS = new System.Windows.Forms.Panel();
             this.btnSalvar = new System.Windows.Forms.Button();
             this.pbLogo = new System.Windows.Forms.PictureBox();

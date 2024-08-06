@@ -46,11 +46,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Forms\frmConfig.cs">
+    <Compile Include="Forms\frmConfigPainel.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\frmConfig.Designer.cs">
-      <DependentUpon>frmConfig.cs</DependentUpon>
+    <Compile Include="Forms\frmConfigPainel.Designer.cs">
+      <DependentUpon>frmConfigPainel.cs</DependentUpon>
     </Compile>
     <Compile Include="Interfaces\IComboBoxService.cs" />
     <Compile Include="Interfaces\IRssFeedService.cs" />
@@ -65,8 +65,8 @@
     <Compile Include="Services\ComboBoxService.cs" />
     <Compile Include="Services\RssFeedService.cs" />
     <Compile Include="Services\XmlReaderService .cs" />
-    <EmbeddedResource Include="Forms\frmConfig.resx">
-      <DependentUpon>frmConfig.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\frmConfigPainel.resx">
+      <DependentUpon>frmConfigPainel.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

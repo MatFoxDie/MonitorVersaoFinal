@@ -30,17 +30,18 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.pnlPrincipal = new System.Windows.Forms.Panel();
+            this.spotifyIcon = new System.Windows.Forms.Button();
             this.btnExit = new System.Windows.Forms.Button();
             this.pbLogo = new System.Windows.Forms.PictureBox();
             this.btnConfiguracao = new System.Windows.Forms.Button();
             this.pnlTexto = new System.Windows.Forms.Panel();
-            this.pnQrCode = new System.Windows.Forms.Panel();
-            this.pnlBarra = new System.Windows.Forms.Panel();
             this.btnTema = new System.Windows.Forms.Button();
             this.lblTitulo = new System.Windows.Forms.Label();
             this.tblpPrincipal = new System.Windows.Forms.TableLayoutPanel();
             this.pnlTableLayoutPanel2 = new System.Windows.Forms.Panel();
-            this.spotifyIcon = new System.Windows.Forms.Button();
+            this.pnlBarra = new System.Windows.Forms.Panel();
+            this.pnlQrCodeFora = new System.Windows.Forms.Panel();
+            this.pnQrCode = new System.Windows.Forms.PictureBox();
             this.pnlPainelInferior.SuspendLayout();
             this.tblPainelInferior.SuspendLayout();
             this.pnlCotacao.SuspendLayout();
@@ -53,6 +54,8 @@
             this.pnlTexto.SuspendLayout();
             this.tblpPrincipal.SuspendLayout();
             this.pnlTableLayoutPanel2.SuspendLayout();
+            this.pnlQrCodeFora.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pnQrCode)).BeginInit();
             this.SuspendLayout();
             // 
             // pnlPainelInferior
@@ -221,6 +224,22 @@
             this.pnlPrincipal.Size = new System.Drawing.Size(960, 500);
             this.pnlPrincipal.TabIndex = 0;
             // 
+            // spotifyIcon
+            // 
+            this.spotifyIcon.BackColor = System.Drawing.Color.Transparent;
+            this.spotifyIcon.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("spotifyIcon.BackgroundImage")));
+            this.spotifyIcon.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.spotifyIcon.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.spotifyIcon.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.spotifyIcon.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.spotifyIcon.ForeColor = System.Drawing.SystemColors.ActiveBorder;
+            this.spotifyIcon.Location = new System.Drawing.Point(94, 12);
+            this.spotifyIcon.Name = "spotifyIcon";
+            this.spotifyIcon.Size = new System.Drawing.Size(35, 35);
+            this.spotifyIcon.TabIndex = 20;
+            this.spotifyIcon.UseVisualStyleBackColor = false;
+            this.spotifyIcon.Click += new System.EventHandler(this.spotifyIcon_Click);
+            // 
             // btnExit
             // 
             this.btnExit.BackColor = System.Drawing.Color.Transparent;
@@ -271,7 +290,7 @@
             this.pnlTexto.BackColor = System.Drawing.Color.Transparent;
             this.pnlTexto.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pnlTexto.BackgroundImage")));
             this.pnlTexto.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pnlTexto.Controls.Add(this.pnQrCode);
+            this.pnlTexto.Controls.Add(this.pnlQrCodeFora);
             this.pnlTexto.Controls.Add(this.pnlBarra);
             this.pnlTexto.Controls.Add(this.btnTema);
             this.pnlTexto.Controls.Add(this.lblTitulo);
@@ -280,25 +299,6 @@
             this.pnlTexto.Name = "pnlTexto";
             this.pnlTexto.Size = new System.Drawing.Size(960, 323);
             this.pnlTexto.TabIndex = 6;
-            // 
-            // pnQrCode
-            // 
-            this.pnQrCode.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.pnQrCode.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pnQrCode.Location = new System.Drawing.Point(805, 137);
-            this.pnQrCode.Name = "pnQrCode";
-            this.pnQrCode.Size = new System.Drawing.Size(125, 125);
-            this.pnQrCode.TabIndex = 7;
-            // 
-            // pnlBarra
-            // 
-            this.pnlBarra.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.pnlBarra.BackColor = System.Drawing.Color.Red;
-            this.pnlBarra.Location = new System.Drawing.Point(56, 272);
-            this.pnlBarra.Name = "pnlBarra";
-            this.pnlBarra.Size = new System.Drawing.Size(874, 21);
-            this.pnlBarra.TabIndex = 6;
             // 
             // btnTema
             // 
@@ -327,7 +327,7 @@
             this.lblTitulo.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.lblTitulo.Location = new System.Drawing.Point(52, 137);
             this.lblTitulo.Name = "lblTitulo";
-            this.lblTitulo.Size = new System.Drawing.Size(730, 119);
+            this.lblTitulo.Size = new System.Drawing.Size(682, 119);
             this.lblTitulo.TabIndex = 3;
             this.lblTitulo.Text = "As notícias estão sendo carregadas, aguarde um pouco...";
             // 
@@ -358,21 +358,35 @@
             this.pnlTableLayoutPanel2.Size = new System.Drawing.Size(960, 500);
             this.pnlTableLayoutPanel2.TabIndex = 0;
             // 
-            // spotifyIcon
+            // pnlBarra
             // 
-            this.spotifyIcon.BackColor = System.Drawing.Color.Transparent;
-            this.spotifyIcon.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("spotifyIcon.BackgroundImage")));
-            this.spotifyIcon.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.spotifyIcon.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.spotifyIcon.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.spotifyIcon.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.spotifyIcon.ForeColor = System.Drawing.SystemColors.ActiveBorder;
-            this.spotifyIcon.Location = new System.Drawing.Point(94, 12);
-            this.spotifyIcon.Name = "spotifyIcon";
-            this.spotifyIcon.Size = new System.Drawing.Size(35, 35);
-            this.spotifyIcon.TabIndex = 20;
-            this.spotifyIcon.UseVisualStyleBackColor = false;
-            this.spotifyIcon.Click += new System.EventHandler(this.spotifyIcon_Click);
+            this.pnlBarra.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.pnlBarra.BackColor = System.Drawing.Color.Red;
+            this.pnlBarra.Location = new System.Drawing.Point(56, 272);
+            this.pnlBarra.Name = "pnlBarra";
+            this.pnlBarra.Size = new System.Drawing.Size(874, 21);
+            this.pnlBarra.TabIndex = 6;
+            // 
+            // pnlQrCodeFora
+            // 
+            this.pnlQrCodeFora.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.pnlQrCodeFora.BackColor = System.Drawing.Color.Transparent;
+            this.pnlQrCodeFora.Controls.Add(this.pnQrCode);
+            this.pnlQrCodeFora.Location = new System.Drawing.Point(740, 76);
+            this.pnlQrCodeFora.Name = "pnlQrCodeFora";
+            this.pnlQrCodeFora.Size = new System.Drawing.Size(190, 190);
+            this.pnlQrCodeFora.TabIndex = 8;
+            // 
+            // pnQrCode
+            // 
+            this.pnQrCode.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.pnQrCode.BackColor = System.Drawing.Color.Transparent;
+            this.pnQrCode.Location = new System.Drawing.Point(35, 35);
+            this.pnQrCode.Name = "pnQrCode";
+            this.pnQrCode.Size = new System.Drawing.Size(125, 125);
+            this.pnQrCode.TabIndex = 0;
+            this.pnQrCode.TabStop = false;
             // 
             // PainelNoticias
             // 
@@ -398,6 +412,8 @@
             this.pnlTexto.ResumeLayout(false);
             this.tblpPrincipal.ResumeLayout(false);
             this.pnlTableLayoutPanel2.ResumeLayout(false);
+            this.pnlQrCodeFora.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pnQrCode)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -409,10 +425,8 @@
         private System.Windows.Forms.Panel pnlTableLayoutPanel2;
         private System.Windows.Forms.Panel pnlPrincipal;
         internal System.Windows.Forms.Panel pnlTexto;
-        internal System.Windows.Forms.Panel pnlBarra;
         internal System.Windows.Forms.Button btnTema;
         internal System.Windows.Forms.Label lblTitulo;
-        private System.Windows.Forms.Panel pnQrCode;
         internal System.Windows.Forms.Button btnConfiguracao;
         private System.Windows.Forms.TableLayoutPanel tblPainelInferior;
         private System.Windows.Forms.Panel pnlCotacao;
@@ -426,5 +440,8 @@
         private System.Windows.Forms.PictureBox pbLogo;
         internal System.Windows.Forms.Button btnExit;
         internal System.Windows.Forms.Button spotifyIcon;
+        private System.Windows.Forms.Panel pnlQrCodeFora;
+        private System.Windows.Forms.PictureBox pnQrCode;
+        internal System.Windows.Forms.Panel pnlBarra;
     }
 }

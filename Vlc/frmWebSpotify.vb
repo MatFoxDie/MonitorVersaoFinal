@@ -38,7 +38,7 @@ Public Class frmWebSpotify
 
     Private Async Sub ClearBrowserCache()
 
-        Await WebView21.CoreWebView2.Profile.ClearBrowsingDataAsync()
+        'Await WebView21.CoreWebView2.Profile.ClearBrowsingDataAsync()
 
     End Sub
 
