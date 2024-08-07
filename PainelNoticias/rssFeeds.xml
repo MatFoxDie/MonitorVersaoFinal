@@ -186,5 +186,6 @@
 		<tempoMoeda>30</tempoMoeda>
 		<tempoPainel>30</tempoPainel>
 		<tempoClima>0</tempoClima>
+		<anuncio>0</anuncio>
 	</Configuracoes>
 </rssFeeds>

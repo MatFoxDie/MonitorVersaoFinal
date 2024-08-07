@@ -281,8 +281,12 @@ Public Class AsSpotifyPlayer
                                              IniciarModoAleatorio()
                                          End Sub)
                     End If
+
                     _account.PlaySingleTrack(_currentTrackList(_index))
                 End If
+
+                'Tocar o audio de propaganda aqui
+
                 Await Task.Run(Sub()
                                    Thread.Sleep(1000)
                                    UpdateControls()

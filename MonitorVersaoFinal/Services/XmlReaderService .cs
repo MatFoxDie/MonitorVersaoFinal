@@ -271,7 +271,8 @@ namespace MonitorVersaoFinal.Services
                     new XElement("tempoNoticia", "30"),
                     new XElement("tempoMoeda", "30"),
                     new XElement("tempoPainel", "30"),
-                    new XElement("tempoClima", "0")
+                    new XElement("tempoClima", "0"),
+                    new XElement("anuncio", "0")
                 )
             )
         );

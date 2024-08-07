@@ -116,7 +116,9 @@
       <Name>Vlc</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Resources\Audios\" />
+  </ItemGroup>
   <ItemGroup>
     <Content Include="Resources\Painel\close.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

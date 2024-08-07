@@ -71,6 +71,7 @@
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.pnlTitulo = new System.Windows.Forms.Panel();
             this.lblTituloRssConfig = new System.Windows.Forms.Label();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.pnlConfiguracaoRSS.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbLogo)).BeginInit();
             this.tctrlFontesTemas.SuspendLayout();
@@ -425,6 +426,7 @@
             // 
             // pnlConfiguracaoGerais
             // 
+            this.pnlConfiguracaoGerais.Controls.Add(this.checkBox1);
             this.pnlConfiguracaoGerais.Controls.Add(this.btnSair);
             this.pnlConfiguracaoGerais.Controls.Add(this.label4);
             this.pnlConfiguracaoGerais.Controls.Add(this.timerAtualizarClima);
@@ -592,14 +594,25 @@
             this.lblTituloRssConfig.TabIndex = 0;
             this.lblTituloRssConfig.Text = "Configuração de Fontes e Temas";
             // 
-            // frmConfig
+            // checkBox1
+            // 
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.checkBox1.Location = new System.Drawing.Point(28, 172);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(177, 17);
+            this.checkBox1.TabIndex = 33;
+            this.checkBox1.Text = "Habilitar Aúdio de Anúncio";
+            this.checkBox1.UseVisualStyleBackColor = true;
+            // 
+            // frmConfigPainel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(710, 379);
             this.Controls.Add(this.tctrlFontesTemas);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Name = "frmConfig";
+            this.Name = "frmConfigPainel";
             this.Text = "frmConfig";
             this.Load += new System.EventHandler(this.frmConfig_Load);
             this.pnlConfiguracaoRSS.ResumeLayout(false);
@@ -664,5 +677,6 @@
         internal System.Windows.Forms.DateTimePicker timerAtualizarClima;
         internal System.Windows.Forms.Label label4;
         internal System.Windows.Forms.Button btnSair;
+        private System.Windows.Forms.CheckBox checkBox1;
     }
 }
