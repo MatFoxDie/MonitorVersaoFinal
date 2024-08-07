@@ -12,5 +12,6 @@ namespace MonitorVersaoFinal.Models
         public int TempoMoeda { get; set; }
         public int TempoPainel { get; set; }
         public int TempoClima { get; set; }
+        public int Anuncio { get; set; }
     }
 }

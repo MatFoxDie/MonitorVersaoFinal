@@ -52,7 +52,8 @@ namespace MonitorVersaoFinal.Services
                     TempoNoticia = int.Parse(configuracoesElement.Element("tempoNoticia")?.Value ?? "30"),
                     TempoMoeda = int.Parse(configuracoesElement.Element("tempoMoeda")?.Value ?? "30"),
                     TempoPainel = int.Parse(configuracoesElement.Element("tempoPainel")?.Value ?? "30"),
-                    TempoClima = int.Parse(configuracoesElement.Element("tempoClima")?.Value ?? "1800")
+                    TempoClima = int.Parse(configuracoesElement.Element("tempoClima")?.Value ?? "1800"),
+                    Anuncio = int.Parse(configuracoesElement.Element("anuncio")?.Value ?? "0")
 
                 };
             }
@@ -76,7 +77,10 @@ namespace MonitorVersaoFinal.Services
                         new XElement("tempoNoticia", RssConfiguracoes.TempoNoticia),
                         new XElement("tempoMoeda", RssConfiguracoes.TempoMoeda),
                         new XElement("tempoPainel", RssConfiguracoes.TempoPainel),
-                        new XElement("tempoClima", RssConfiguracoes.TempoClima))));
+                        new XElement("tempoClima", RssConfiguracoes.TempoClima),
+                        new XElement("anuncio", RssConfiguracoes.Anuncio)))
+                    
+                );
                     
 
             xdoc.Save(Settings.XmlFilePath);

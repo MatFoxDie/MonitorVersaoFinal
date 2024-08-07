@@ -1,5 +1,7 @@
-﻿Imports System.Threading
+﻿Imports System.IO
+Imports System.Threading
 Imports Microsoft.Web.WebView2.WinForms
+Imports MonitorVersaoFinal.Services
 Imports Spotify.Spotify.Api
 Imports Spotify.Spotify.Api.Models
 Imports vlcPlayer.Controls
@@ -263,6 +265,8 @@ Public Class AsSpotifyPlayer
 
     End Sub
 
+    Dim qtdeDeVezes As Integer = 0
+
     Private Async Sub timertick(sender As Object, e As Timers.ElapsedEventArgs)
         Try
             If _timer Is Nothing Then
@@ -285,7 +289,43 @@ Public Class AsSpotifyPlayer
                     _account.PlaySingleTrack(_currentTrackList(_index))
                 End If
 
-                'Tocar o audio de propaganda aqui
+
+                'Qtdedevezes = quantidade de musicas tocadas antes de tocar o anuncio
+                If qtdeDeVezes = 3 Then
+                    'Carega as configurações do painel de configurações
+                    Dim xmlPainelConfig As XmlReaderService = New XmlReaderService()
+                    xmlPainelConfig.LoadRssSources("rssFeeds.xml")
+
+                    If xmlPainelConfig.RssConfiguracoes.Anuncio = 1 Then
+
+                        Dim aleatorio As New Random()
+                        Dim numeroAleatorio As Integer = aleatorio.Next(1, 10)
+
+                        'Verifica se existe o audio de propaganda aonde é "anuncio" & numeroAleatorio & ".wav"
+                        If Not File.Exists(Path.Combine(Directory.GetCurrentDirectory(), "Resources", "Audios", "anuncio" & numeroAleatorio & ".wav")) Then
+                            numeroAleatorio = 1
+                        End If
+
+                        Dim audio As String = Path.Combine(Directory.GetCurrentDirectory(), "Resources", "Audios", "anuncio" & numeroAleatorio & ".wav")
+
+                        'Toca o audio de propaganda
+                        Dim player As New System.Media.SoundPlayer(audio)
+                        player.Play()
+
+                        'Verifica o tamanho do audio para saber quanto tempo ele vai ficar tocando
+
+                        Dim audioInfo As New FileInfo(audio)
+                        Dim audioLength As Integer = audioInfo.Length
+
+
+                    End If
+
+                    qtdeDeVezes = 0
+                Else
+                    qtdeDeVezes += 1
+                End If
+               
+
 
                 Await Task.Run(Sub()
                                    Thread.Sleep(1000)

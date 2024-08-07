@@ -57,6 +57,7 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.label2 = new System.Windows.Forms.Label();
             this.pnlConfiguracaoGerais = new System.Windows.Forms.Panel();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.btnSair = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
             this.timerAtualizarClima = new System.Windows.Forms.DateTimePicker();
@@ -71,7 +72,6 @@
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.pnlTitulo = new System.Windows.Forms.Panel();
             this.lblTituloRssConfig = new System.Windows.Forms.Label();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.pnlConfiguracaoRSS.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbLogo)).BeginInit();
             this.tctrlFontesTemas.SuspendLayout();
@@ -443,6 +443,18 @@
             this.pnlConfiguracaoGerais.Size = new System.Drawing.Size(690, 281);
             this.pnlConfiguracaoGerais.TabIndex = 1;
             // 
+            // checkBox1
+            // 
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.checkBox1.Location = new System.Drawing.Point(28, 172);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(177, 17);
+            this.checkBox1.TabIndex = 33;
+            this.checkBox1.Text = "Habilitar Aúdio de Anúncio";
+            this.checkBox1.UseVisualStyleBackColor = true;
+            this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
+            // 
             // btnSair
             // 
             this.btnSair.BackColor = System.Drawing.Color.OrangeRed;
@@ -593,17 +605,6 @@
             this.lblTituloRssConfig.Size = new System.Drawing.Size(292, 22);
             this.lblTituloRssConfig.TabIndex = 0;
             this.lblTituloRssConfig.Text = "Configuração de Fontes e Temas";
-            // 
-            // checkBox1
-            // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.checkBox1.Location = new System.Drawing.Point(28, 172);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(177, 17);
-            this.checkBox1.TabIndex = 33;
-            this.checkBox1.Text = "Habilitar Aúdio de Anúncio";
-            this.checkBox1.UseVisualStyleBackColor = true;
             // 
             // frmConfigPainel
             // 

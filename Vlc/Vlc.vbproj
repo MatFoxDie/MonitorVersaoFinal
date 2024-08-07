@@ -458,6 +458,9 @@
     <None Include="Resources\config.png" />
     <None Include="Resources\spotify.png" />
     <None Include="Resources\verdeDegrade.png" />
+    <Content Include="Resources\Audios\anuncio1.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="vlc-portable32bit\app\AUTHORS.txt" />
     <Content Include="vlc-portable32bit\app\axvlc.dll" />
     <Content Include="vlc-portable32bit\app\COPYING.txt" />
@@ -894,6 +897,10 @@
     <Content Include="vlc-portable32bit\vlc-portable.exe" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\MonitorVersaoFinal\PainelConfiguracoes.csproj">
+      <Project>{b8515298-1d61-4416-943d-cfcdc7a1e6e9}</Project>
+      <Name>PainelConfiguracoes</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Spotify\Spotify.vbproj">
       <Project>{41d0a59c-e27f-4b7b-813e-f15d8d610aa3}</Project>
       <Name>Spotify</Name>

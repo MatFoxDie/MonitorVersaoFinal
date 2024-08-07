@@ -39,6 +39,7 @@ namespace MonitorVersaoFinal.Forms
             timerAtualizarMoedas.Value = DateTime.Today.AddSeconds(_xmlService.RssConfiguracoes.TempoMoeda);
             timerAtualizarPainel.Value = DateTime.Today.AddSeconds(_xmlService.RssConfiguracoes.TempoPainel);
             timerAtualizarClima.Value = DateTime.Today.AddSeconds(_xmlService.RssConfiguracoes.TempoClima);
+            checkBox1.Checked = _xmlService.RssConfiguracoes.Anuncio == 1;
 
             int x = (Screen.PrimaryScreen.WorkingArea.Width - this.Width) / 2;
             int y = (Screen.PrimaryScreen.WorkingArea.Height - this.Height) / 2;
@@ -637,6 +638,7 @@ namespace MonitorVersaoFinal.Forms
             _xmlService.RssConfiguracoes.TempoNoticia = (int)timerNoticia.Value.TimeOfDay.TotalSeconds;
             _xmlService.RssConfiguracoes.TempoMoeda = (int)timerAtualizarMoedas.Value.TimeOfDay.TotalSeconds;
             _xmlService.RssConfiguracoes.TempoPainel = (int)timerAtualizarPainel.Value.TimeOfDay.TotalSeconds;
+            _xmlService.RssConfiguracoes.Anuncio = checkBox1.Checked ? 1 : 0;
 
             try
             {
@@ -661,6 +663,11 @@ namespace MonitorVersaoFinal.Forms
         {
             // Dispara o evento quando o formulário é fechado
             FormClosedEvent?.Invoke();
+        }
+
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+            _xmlService.RssConfiguracoes.Anuncio = checkBox1.Checked ? 1 : 0;
         }
     }
 }
