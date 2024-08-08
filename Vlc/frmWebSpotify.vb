@@ -104,7 +104,6 @@ Public Class frmWebSpotify
             playerInstance.pararProcessos()
             playerInstance.FinalizarProcessos()
             playerInstance = New AsSpotifyPlayer(_frm, WebView21, _spotifyApi)
-            MessageBox.Show("Logado com sucesso!")
         Catch ex As Exception
             Console.WriteLine("Erro ao logar com o Spotify: " & ex.Message)
         End Try
