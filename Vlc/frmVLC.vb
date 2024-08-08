@@ -17,7 +17,6 @@ Public Class frmVLC
     Public _spotifyApi As SpotifyApi
     Public _modoAleatorio As Boolean = False
     Public _cardManager As CardManager
-    Public _player As IPlayer
     Private _browser As frmWebSpotify
     Public fechadoForcado As Boolean
     Sub New()
@@ -32,7 +31,7 @@ Public Class frmVLC
 
 
             'CarregarCategoryCards()
-            _player = New AsLocalPlayer(Me, _spotifyApi)
+            playerInstance = New AsLocalPlayer(Me, _spotifyApi)
 
             AddHandler pnlDescricao.Click, AddressOf pnlDescricao_Click
             AddHandler picCurrentPlaying.Click, AddressOf picCurrentPlaying_Click
@@ -94,7 +93,7 @@ Public Class frmVLC
                 _spotifyApi = New SpotifyApi()
                 _cardManager = New CardManager(flpCards, Me)
                 CarregarCategoryCards()
-                _player = New AsLocalPlayer(Me, _spotifyApi)
+                playerInstance = New AsLocalPlayer(Me, _spotifyApi)
 
                 AddHandler pnlDescricao.Click, AddressOf pnlDescricao_Click
                 AddHandler picCurrentPlaying.Click, AddressOf picCurrentPlaying_Click
@@ -139,14 +138,14 @@ Public Class frmVLC
 
     Private Sub picAvancar_Click_1(sender As Object, e As EventArgs) Handles picAvancar.Click
         Try
-            _player.SkipToNext()
+            playerInstance.SkipToNext()
         Catch ex As Exception
             Console.WriteLine(ex.Message)
         End Try
     End Sub
     Private Sub picVoltar_Click(sender As Object, e As EventArgs) Handles picVoltar.Click
         Try
-            _player.SkipToPrevious()
+            playerInstance.SkipToPrevious()
         Catch ex As Exception
             Console.WriteLine(ex.Message)
         End Try
@@ -154,7 +153,7 @@ Public Class frmVLC
 
     Private Sub picPlay_Click(sender As Object, e As EventArgs) Handles picPlay.Click
         Try
-            _player.PlayPause()
+            playerInstance.PlayPause()
         Catch ex As Exception
             Console.WriteLine(ex.Message)
         End Try
@@ -174,7 +173,7 @@ Public Class frmVLC
 
     Private Sub trkVolume_ValueChanged(sender As Object, e As EventArgs) Handles trkVolume.ValueChanged
         Try
-            _player.SetVolume(trkVolume.Value)
+            playerInstance.SetVolume(trkVolume.Value)
         Catch ex As Exception
             Console.WriteLine(ex.Message)
         End Try
@@ -265,7 +264,7 @@ Public Class frmVLC
         Try
             Dim clickPositionXPercentRounded As Double = getMousePositionInPercent()
             pnlProgresIn.Width = pnlProgressOut.Width * clickPositionXPercentRounded
-            _player.SetPosition(clickPositionXPercentRounded)
+            playerInstance.SetPosition(clickPositionXPercentRounded)
         Catch ex As Exception
             Console.WriteLine(ex.Message)
         End Try
@@ -412,7 +411,7 @@ Public Class frmVLC
 
     Public Sub HandleTrackClick(panelCliked As Panel, track As Track, pictureBox As PictureBox, panels As List(Of Panel))
         Try
-            _player.TrackClick(panelCliked, track, pictureBox, panels)
+            playerInstance.TrackClick(panelCliked, track, pictureBox, panels)
         Catch ex As Exception
             Console.WriteLine(ex.Message)
         End Try
@@ -420,7 +419,7 @@ Public Class frmVLC
 
     Public Async Sub HandlePlaylistClick(panelCliked As Panel, item As Item, pictureBox As PictureBox, panels As List(Of Panel))
         Try
-            _player.PlaylistClick(item.id)
+            playerInstance.PlaylistClick(item.id)
         Catch ex As Exception
             Console.WriteLine(ex.Message)
         End Try
@@ -500,7 +499,7 @@ Public Class frmVLC
 
     Private Sub pararProcessosDeDownload()
         Try
-            _player.pararProcessos()
+            playerInstance.pararProcessos()
         Catch ex As Exception
             Console.WriteLine(ex.Message)
         End Try
@@ -644,7 +643,7 @@ Public Class frmVLC
                 picRefresh.Visible = True
                 _modoAleatorio = True
                 picAleatorio.Image = My.Resources.aleatorio_azul
-                _player.IniciarModoAleatorio()
+                playerInstance.IniciarModoAleatorio()
             Else
                 _modoAleatorio = False
                 picAleatorio.Image = My.Resources.aleatorio
@@ -683,9 +682,9 @@ Public Class frmVLC
     Private Sub BtnSair_Click(sender As Object, e As EventArgs) Handles BtnSair.Click
         Try
             picVoltarPanel_Click(Nothing, Nothing)
-            _player.pararProcessos()
-            _player.FinalizarProcessos()
-            _player = New AsLocalPlayer(Me, _spotifyApi)
+            playerInstance.pararProcessos()
+            playerInstance.FinalizarProcessos()
+            playerInstance = New AsLocalPlayer(Me, _spotifyApi)
             _browser.Sair()
             btnEntrarComSpotify.Visible = True
             pnlUsuarioLogado.Visible = False
@@ -710,7 +709,7 @@ Public Class frmVLC
             If _flpCards.Navegacao = ENavegation.InMusics Then
                 Return
             End If
-            _player.PnlDescricaoClick()
+            playerInstance.PnlDescricaoClick()
         Catch ex As Exception
             Console.WriteLine(ex.Message)
         End Try
@@ -740,7 +739,7 @@ Public Class frmVLC
 
     Private Sub picRefresh_Click(sender As Object, e As EventArgs) Handles picRefresh.Click
         Try
-            _player.IniciarModoAleatorio()
+            playerInstance.IniciarModoAleatorio()
         Catch ex As Exception
             Console.WriteLine(ex.Message)
         End Try
@@ -749,5 +748,9 @@ Public Class frmVLC
 
     Private Sub Sair_Click(sender As Object, e As EventArgs) Handles Sair.Click
         Me.Visible = False
+    End Sub
+
+    Private Sub flpCards_Paint(sender As Object, e As PaintEventArgs) Handles flpCards.Paint
+
     End Sub
 End Class

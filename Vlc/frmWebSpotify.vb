@@ -101,9 +101,9 @@ Public Class frmWebSpotify
             Dim y = _frm.pnlUsuarioLogado.Location.Y
             _frm.pnlUsuarioLogado.Location = New Point(x, y)
             _spotifyApi.Userlogago = True
-            _frm._player.pararProcessos()
-            _frm._player.FinalizarProcessos()
-            _frm._player = New AsSpotifyPlayer(_frm, WebView21, _spotifyApi)
+            playerInstance.pararProcessos()
+            playerInstance.FinalizarProcessos()
+            playerInstance = New AsSpotifyPlayer(_frm, WebView21, _spotifyApi)
             MessageBox.Show("Logado com sucesso!")
         Catch ex As Exception
             Console.WriteLine("Erro ao logar com o Spotify: " & ex.Message)

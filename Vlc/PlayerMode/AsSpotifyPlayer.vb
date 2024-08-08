@@ -2,6 +2,7 @@
 Imports System.Threading
 Imports Microsoft.Web.WebView2.WinForms
 Imports MonitorVersaoFinal.Services
+Imports NAudio.Wave
 Imports Spotify.Spotify.Api
 Imports Spotify.Spotify.Api.Models
 Imports vlcPlayer.Controls
@@ -56,11 +57,15 @@ Public Class AsSpotifyPlayer
         End Try
     End Function
 
-    Public Async Sub PlayPause() Implements IPlayer.PlayPause
+    Public Sub PlayPause() Implements IPlayer.PlayPause
         Try
-            Await _webview.ExecuteScriptAsync(JavaScriptCommands.PlayPause)
-            Thread.Sleep(1000)
-            UpdateControls()
+            If _webview.InvokeRequired Then
+                _webview.Invoke(New Action(AddressOf PlayPause))
+            Else
+                _webview.ExecuteScriptAsync(JavaScriptCommands.PlayPause)
+                Thread.Sleep(1000)
+                UpdateControls()
+            End If
         Catch ex As Exception
             Console.WriteLine(ex.Message)
         End Try
@@ -291,8 +296,8 @@ Public Class AsSpotifyPlayer
 
 
                 'Qtdedevezes = quantidade de musicas tocadas antes de tocar o anuncio
-                If qtdeDeVezes = 3 Then
-                    'Carega as configurações do painel de configurações
+                If qtdeDeVezes = 1 Then
+                    'Carrega as configurações do painel de configurações
                     Dim xmlPainelConfig As XmlReaderService = New XmlReaderService()
                     xmlPainelConfig.LoadRssSources("rssFeeds.xml")
 
@@ -308,23 +313,32 @@ Public Class AsSpotifyPlayer
 
                         Dim audio As String = Path.Combine(Directory.GetCurrentDirectory(), "Resources", "Audios", "anuncio" & numeroAleatorio & ".wav")
 
+                        'Pausa a música
+                        If playerInstance IsNot Nothing Then
+                            playerInstance.PlayPause()
+                        End If
+
                         'Toca o audio de propaganda
                         Dim player As New System.Media.SoundPlayer(audio)
                         player.Play()
 
                         'Verifica o tamanho do audio para saber quanto tempo ele vai ficar tocando
+                        Dim durationInSeconds As Double = GetAudioDurationInSeconds(audio)
 
-                        Dim audioInfo As New FileInfo(audio)
-                        Dim audioLength As Integer = audioInfo.Length
+                        'Aguarda o tempo de duração do anúncio
+                        Thread.Sleep(durationInSeconds * 1000)
 
-
+                        'Retoma a música
+                        If playerInstance IsNot Nothing Then
+                            playerInstance.PlayPause()
+                        End If
                     End If
 
                     qtdeDeVezes = 0
                 Else
                     qtdeDeVezes += 1
                 End If
-               
+
 
 
                 Await Task.Run(Sub()
@@ -340,6 +354,12 @@ Public Class AsSpotifyPlayer
             Console.WriteLine(ex.Message)
         End Try
     End Sub
+    Function GetAudioDurationInSeconds(filePath As String) As Double
+        Using reader As New AudioFileReader(filePath)
+            Return reader.TotalTime.TotalSeconds
+        End Using
+    End Function
+
 
     Private Function ContertSecToTime(sec As Integer) As String
         Try

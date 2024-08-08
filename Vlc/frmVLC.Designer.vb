@@ -45,6 +45,7 @@ Partial Class frmVLC
         Me.picVoltarPanel = New System.Windows.Forms.PictureBox()
         Me.lblNavegacao = New System.Windows.Forms.Label()
         Me.pnlBottom = New System.Windows.Forms.Panel()
+        Me.Sair = New System.Windows.Forms.Button()
         Me.pnlBuffer = New System.Windows.Forms.Panel()
         Me.pnlProgresIn = New System.Windows.Forms.Panel()
         Me.picAleatorio = New System.Windows.Forms.PictureBox()
@@ -62,7 +63,6 @@ Partial Class frmVLC
         Me.lblCurrentTime = New System.Windows.Forms.Label()
         Me.trkVolume = New System.Windows.Forms.TrackBar()
         Me.picVolume = New System.Windows.Forms.PictureBox()
-        Me.Sair = New System.Windows.Forms.Button()
         CType(Me.ErrorProvider1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PnlLateral.SuspendLayout()
         CType(Me.picRefresh, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -102,7 +102,7 @@ Partial Class frmVLC
         Me.PnlLateral.Controls.Add(Me.picVoltarPanel)
         Me.PnlLateral.Controls.Add(Me.lblNavegacao)
         Me.PnlLateral.Location = New System.Drawing.Point(0, -1)
-        Me.PnlLateral.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.PnlLateral.Margin = New System.Windows.Forms.Padding(2)
         Me.PnlLateral.Name = "PnlLateral"
         Me.PnlLateral.Size = New System.Drawing.Size(851, 513)
         Me.PnlLateral.TabIndex = 16
@@ -112,7 +112,7 @@ Partial Class frmVLC
         Me.picRefresh.Cursor = System.Windows.Forms.Cursors.Hand
         Me.picRefresh.Image = Global.vlcPlayer.My.Resources.Resources.recarregar
         Me.picRefresh.Location = New System.Drawing.Point(194, 70)
-        Me.picRefresh.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.picRefresh.Margin = New System.Windows.Forms.Padding(2)
         Me.picRefresh.Name = "picRefresh"
         Me.picRefresh.Size = New System.Drawing.Size(25, 24)
         Me.picRefresh.TabIndex = 28
@@ -125,7 +125,7 @@ Partial Class frmVLC
         Me.pnlUsuarioLogado.Controls.Add(Me.BtnSair)
         Me.pnlUsuarioLogado.Controls.Add(Me.lblNomeUsuarioLogado)
         Me.pnlUsuarioLogado.Location = New System.Drawing.Point(356, 17)
-        Me.pnlUsuarioLogado.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.pnlUsuarioLogado.Margin = New System.Windows.Forms.Padding(2)
         Me.pnlUsuarioLogado.Name = "pnlUsuarioLogado"
         Me.pnlUsuarioLogado.Size = New System.Drawing.Size(262, 26)
         Me.pnlUsuarioLogado.TabIndex = 27
@@ -135,7 +135,7 @@ Partial Class frmVLC
         '
         Me.PictureBox1.Image = Global.vlcPlayer.My.Resources.Resources.spotify
         Me.PictureBox1.Location = New System.Drawing.Point(236, 2)
-        Me.PictureBox1.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.PictureBox1.Margin = New System.Windows.Forms.Padding(2)
         Me.PictureBox1.Name = "PictureBox1"
         Me.PictureBox1.Size = New System.Drawing.Size(25, 24)
         Me.PictureBox1.TabIndex = 3
@@ -148,7 +148,7 @@ Partial Class frmVLC
         Me.BtnSair.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.BtnSair.Font = New System.Drawing.Font("Microsoft Sans Serif", 7.8!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.BtnSair.Location = New System.Drawing.Point(189, 3)
-        Me.BtnSair.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.BtnSair.Margin = New System.Windows.Forms.Padding(2)
         Me.BtnSair.Name = "BtnSair"
         Me.BtnSair.Size = New System.Drawing.Size(42, 20)
         Me.BtnSair.TabIndex = 2
@@ -177,7 +177,7 @@ Partial Class frmVLC
         Me.btnEntrarComSpotify.Image = Global.vlcPlayer.My.Resources.Resources.spotify
         Me.btnEntrarComSpotify.ImageAlign = System.Drawing.ContentAlignment.MiddleRight
         Me.btnEntrarComSpotify.Location = New System.Drawing.Point(635, 15)
-        Me.btnEntrarComSpotify.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.btnEntrarComSpotify.Margin = New System.Windows.Forms.Padding(2)
         Me.btnEntrarComSpotify.Name = "btnEntrarComSpotify"
         Me.btnEntrarComSpotify.Size = New System.Drawing.Size(143, 32)
         Me.btnEntrarComSpotify.TabIndex = 26
@@ -191,7 +191,7 @@ Partial Class frmVLC
         Me.picConfig.Cursor = System.Windows.Forms.Cursors.Hand
         Me.picConfig.Image = Global.vlcPlayer.My.Resources.Resources.config
         Me.picConfig.Location = New System.Drawing.Point(814, 15)
-        Me.picConfig.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.picConfig.Margin = New System.Windows.Forms.Padding(2)
         Me.picConfig.Name = "picConfig"
         Me.picConfig.Size = New System.Drawing.Size(30, 34)
         Me.picConfig.TabIndex = 25
@@ -203,7 +203,7 @@ Partial Class frmVLC
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.flpCards.Location = New System.Drawing.Point(0, 94)
-        Me.flpCards.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.flpCards.Margin = New System.Windows.Forms.Padding(2)
         Me.flpCards.Name = "flpCards"
         Me.flpCards.Navegacao = vlcPlayer.Controls.ENavegation.InCategory
         Me.flpCards.Size = New System.Drawing.Size(851, 416)
@@ -215,7 +215,7 @@ Partial Class frmVLC
         Me.pnlBuscar.Controls.Add(Me.btnBuscar)
         Me.pnlBuscar.Controls.Add(Me.txtBuscar)
         Me.pnlBuscar.Location = New System.Drawing.Point(46, 4)
-        Me.pnlBuscar.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.pnlBuscar.Margin = New System.Windows.Forms.Padding(2)
         Me.pnlBuscar.Name = "pnlBuscar"
         Me.pnlBuscar.Size = New System.Drawing.Size(306, 37)
         Me.pnlBuscar.TabIndex = 23
@@ -227,7 +227,7 @@ Partial Class frmVLC
         Me.btnBuscar.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnBuscar.Image = Global.vlcPlayer.My.Resources.Resources.procurar
         Me.btnBuscar.Location = New System.Drawing.Point(272, 3)
-        Me.btnBuscar.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.btnBuscar.Margin = New System.Windows.Forms.Padding(2)
         Me.btnBuscar.Name = "btnBuscar"
         Me.btnBuscar.Size = New System.Drawing.Size(32, 30)
         Me.btnBuscar.TabIndex = 22
@@ -239,7 +239,7 @@ Partial Class frmVLC
         Me.txtBuscar.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.txtBuscar.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtBuscar.Location = New System.Drawing.Point(17, 11)
-        Me.txtBuscar.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.txtBuscar.Margin = New System.Windows.Forms.Padding(2)
         Me.txtBuscar.Name = "txtBuscar"
         Me.txtBuscar.Size = New System.Drawing.Size(256, 16)
         Me.txtBuscar.TabIndex = 21
@@ -249,7 +249,7 @@ Partial Class frmVLC
         Me.picVoltarPanel.Cursor = System.Windows.Forms.Cursors.Hand
         Me.picVoltarPanel.Image = Global.vlcPlayer.My.Resources.Resources.volte
         Me.picVoltarPanel.Location = New System.Drawing.Point(8, 11)
-        Me.picVoltarPanel.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.picVoltarPanel.Margin = New System.Windows.Forms.Padding(2)
         Me.picVoltarPanel.Name = "picVoltarPanel"
         Me.picVoltarPanel.Size = New System.Drawing.Size(24, 24)
         Me.picVoltarPanel.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize
@@ -286,10 +286,20 @@ Partial Class frmVLC
         Me.pnlBottom.Controls.Add(Me.picVolume)
         Me.pnlBottom.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.pnlBottom.Location = New System.Drawing.Point(0, 515)
-        Me.pnlBottom.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.pnlBottom.Margin = New System.Windows.Forms.Padding(2)
         Me.pnlBottom.Name = "pnlBottom"
         Me.pnlBottom.Size = New System.Drawing.Size(851, 107)
         Me.pnlBottom.TabIndex = 24
+        '
+        'Sair
+        '
+        Me.Sair.BackColor = System.Drawing.Color.Red
+        Me.Sair.Location = New System.Drawing.Point(767, 68)
+        Me.Sair.Name = "Sair"
+        Me.Sair.Size = New System.Drawing.Size(77, 35)
+        Me.Sair.TabIndex = 35
+        Me.Sair.Text = "Sair"
+        Me.Sair.UseVisualStyleBackColor = False
         '
         'pnlBuffer
         '
@@ -308,7 +318,7 @@ Partial Class frmVLC
         Me.pnlProgresIn.BackColor = System.Drawing.Color.Blue
         Me.pnlProgresIn.Cursor = System.Windows.Forms.Cursors.Hand
         Me.pnlProgresIn.Location = New System.Drawing.Point(-14, 0)
-        Me.pnlProgresIn.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.pnlProgresIn.Margin = New System.Windows.Forms.Padding(2)
         Me.pnlProgresIn.Name = "pnlProgresIn"
         Me.pnlProgresIn.Size = New System.Drawing.Size(196, 12)
         Me.pnlProgresIn.TabIndex = 0
@@ -319,7 +329,7 @@ Partial Class frmVLC
         Me.picAleatorio.Cursor = System.Windows.Forms.Cursors.Hand
         Me.picAleatorio.Image = Global.vlcPlayer.My.Resources.Resources.aleatorio
         Me.picAleatorio.Location = New System.Drawing.Point(320, 39)
-        Me.picAleatorio.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.picAleatorio.Margin = New System.Windows.Forms.Padding(2)
         Me.picAleatorio.Name = "picAleatorio"
         Me.picAleatorio.Size = New System.Drawing.Size(26, 23)
         Me.picAleatorio.TabIndex = 34
@@ -333,7 +343,7 @@ Partial Class frmVLC
         Me.pnlDescricao.Controls.Add(Me.lblCurrentTrack)
         Me.pnlDescricao.Cursor = System.Windows.Forms.Cursors.Hand
         Me.pnlDescricao.Location = New System.Drawing.Point(5, 1)
-        Me.pnlDescricao.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.pnlDescricao.Margin = New System.Windows.Forms.Padding(2)
         Me.pnlDescricao.Name = "pnlDescricao"
         Me.pnlDescricao.Size = New System.Drawing.Size(262, 108)
         Me.pnlDescricao.TabIndex = 17
@@ -351,7 +361,7 @@ Partial Class frmVLC
         'picCurrentPlaying
         '
         Me.picCurrentPlaying.Location = New System.Drawing.Point(2, 3)
-        Me.picCurrentPlaying.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.picCurrentPlaying.Margin = New System.Windows.Forms.Padding(2)
         Me.picCurrentPlaying.Name = "picCurrentPlaying"
         Me.picCurrentPlaying.Size = New System.Drawing.Size(140, 99)
         Me.picCurrentPlaying.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
@@ -408,7 +418,7 @@ Partial Class frmVLC
         Me.picReplay.Cursor = System.Windows.Forms.Cursors.Hand
         Me.picReplay.Image = CType(resources.GetObject("picReplay.Image"), System.Drawing.Image)
         Me.picReplay.Location = New System.Drawing.Point(376, 40)
-        Me.picReplay.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.picReplay.Margin = New System.Windows.Forms.Padding(2)
         Me.picReplay.Name = "picReplay"
         Me.picReplay.Size = New System.Drawing.Size(24, 24)
         Me.picReplay.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize
@@ -421,7 +431,7 @@ Partial Class frmVLC
         Me.picPlay.Cursor = System.Windows.Forms.Cursors.Hand
         Me.picPlay.Image = Global.vlcPlayer.My.Resources.Resources.toque
         Me.picPlay.Location = New System.Drawing.Point(472, 37)
-        Me.picPlay.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.picPlay.Margin = New System.Windows.Forms.Padding(2)
         Me.picPlay.Name = "picPlay"
         Me.picPlay.Size = New System.Drawing.Size(32, 32)
         Me.picPlay.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize
@@ -434,7 +444,7 @@ Partial Class frmVLC
         Me.pnlProgressOut.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.pnlProgressOut.Cursor = System.Windows.Forms.Cursors.Hand
         Me.pnlProgressOut.Location = New System.Drawing.Point(320, 88)
-        Me.pnlProgressOut.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.pnlProgressOut.Margin = New System.Windows.Forms.Padding(2)
         Me.pnlProgressOut.Name = "pnlProgressOut"
         Me.pnlProgressOut.Size = New System.Drawing.Size(390, 11)
         Me.pnlProgressOut.TabIndex = 11
@@ -466,7 +476,7 @@ Partial Class frmVLC
         Me.trkVolume.Anchor = System.Windows.Forms.AnchorStyles.Bottom
         Me.trkVolume.Cursor = System.Windows.Forms.Cursors.Hand
         Me.trkVolume.Location = New System.Drawing.Point(614, 37)
-        Me.trkVolume.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.trkVolume.Margin = New System.Windows.Forms.Padding(2)
         Me.trkVolume.Name = "trkVolume"
         Me.trkVolume.Size = New System.Drawing.Size(95, 45)
         Me.trkVolume.TabIndex = 20
@@ -478,22 +488,12 @@ Partial Class frmVLC
         Me.picVolume.BackColor = System.Drawing.Color.Transparent
         Me.picVolume.Image = Global.vlcPlayer.My.Resources.Resources.som
         Me.picVolume.Location = New System.Drawing.Point(574, 40)
-        Me.picVolume.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.picVolume.Margin = New System.Windows.Forms.Padding(2)
         Me.picVolume.Name = "picVolume"
         Me.picVolume.Size = New System.Drawing.Size(24, 24)
         Me.picVolume.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize
         Me.picVolume.TabIndex = 26
         Me.picVolume.TabStop = False
-        '
-        'Sair
-        '
-        Me.Sair.BackColor = System.Drawing.Color.Red
-        Me.Sair.Location = New System.Drawing.Point(767, 68)
-        Me.Sair.Name = "Sair"
-        Me.Sair.Size = New System.Drawing.Size(77, 35)
-        Me.Sair.TabIndex = 35
-        Me.Sair.Text = "Sair"
-        Me.Sair.UseVisualStyleBackColor = False
         '
         'frmVLC
         '
