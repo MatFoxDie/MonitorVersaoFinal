@@ -20,7 +20,6 @@ using Newtonsoft.Json;
 using MonitorVersaoFinal.Models;
 using System.Text.RegularExpressions;
 using System.Globalization;
-using vlcPlayer;
 
 
 namespace PainelNoticias
@@ -41,7 +40,6 @@ namespace PainelNoticias
         private int _tempoAtualizacaoClima;
         private int _tempoAtualizacaoSpotify;
         private CircularProgressBar _progressBar;
-        frmVLC frmVLC;
 
         public PainelNoticias(INewsService newsService)
         {
@@ -73,7 +71,7 @@ namespace PainelNoticias
                 Height = (int)(pnQrCode.Height * 1.35),
                 BackColor = Color.Transparent
             };
-          
+
             pnlQrCodeFora.Controls.Add(_progressBar);
             _progressBar.Dock = DockStyle.Fill;
 
@@ -81,43 +79,51 @@ namespace PainelNoticias
 
         private async void Form1_Load(object sender, EventArgs e)
         {
+            try
+            {
 
-            await LoadConfiguracoesAsync();
+                await LoadConfiguracoesAsync();
 
-            if (_tempoAtualizacaoMoeda.Equals(0))
-                _moedaTimer.Interval = 30000 / 2;
-            else
-                _moedaTimer.Interval = _tempoAtualizacaoMoeda / 2;
+                if (_tempoAtualizacaoMoeda.Equals(0))
+                    _moedaTimer.Interval = 30000 / 2;
+                else
+                    _moedaTimer.Interval = _tempoAtualizacaoMoeda / 2;
 
-            _moedaTimer.Start();
+                _moedaTimer.Start();
 
-            if (_tempoAtualizacaoPainel.Equals(0))
-                _painelTimer.Interval = 30000;
-            else
-                _painelTimer.Interval = _tempoAtualizacaoPainel;
+                if (_tempoAtualizacaoPainel.Equals(0))
+                    _painelTimer.Interval = 30000;
+                else
+                    _painelTimer.Interval = _tempoAtualizacaoPainel;
 
-            _painelTimer.Start();
+                _painelTimer.Start();
 
 
-            if (_tempoAtualizacaoClima.Equals(0))
-                _climaTimer.Interval = 1800000;
-            else
-                _climaTimer.Interval = _tempoAtualizacaoClima;
-            _climaTimer.Start();
+                if (_tempoAtualizacaoClima.Equals(0))
+                    _climaTimer.Interval = 1800000;
+                else
+                    _climaTimer.Interval = _tempoAtualizacaoClima;
+                _climaTimer.Start();
 
-            ClimaTimer_Tick(sender, e);
+                ClimaTimer_Tick(sender, e);
 
-            RoundButton(btnTema);
+                RoundButton(btnTema);
 
-            await LoadNewsAsync();
-            DisplayCurrentNews();
-            if (_tempoAtualizacaoNoticias.Equals(0))
-                _newsTimer.Interval = 30000;
-            else
-                _newsTimer.Interval = _tempoAtualizacaoNoticias;
-            _newsTimer.Start();
+                await LoadNewsAsync();
+                DisplayCurrentNews();
+                if (_tempoAtualizacaoNoticias.Equals(0))
+                    _newsTimer.Interval = 30000;
+                else
+                    _newsTimer.Interval = _tempoAtualizacaoNoticias;
+                _newsTimer.Start();
 
-           
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
 
         }
         private async Task LoadConfiguracoesAsync()
@@ -125,7 +131,7 @@ namespace PainelNoticias
             var xmlService = new XmlReaderService();
             xmlService.LoadRssSources("rssFeeds.xml");
             _tempoAtualizacaoNoticias = xmlService.RssConfiguracoes.TempoNoticia * 1000;
-            _tempoAtualizacaoMoeda = xmlService.RssConfiguracoes.TempoMoeda * 1000; 
+            _tempoAtualizacaoMoeda = xmlService.RssConfiguracoes.TempoMoeda * 1000;
             _tempoAtualizacaoPainel = xmlService.RssConfiguracoes.TempoPainel * 1000;
             _tempoAtualizacaoClima = xmlService.RssConfiguracoes.TempoClima * 1000;
 
@@ -153,7 +159,7 @@ namespace PainelNoticias
 
         private async void DisplayCurrentNews()
         {
-           if (_newsItems.Count == 0) return;
+            if (_newsItems.Count == 0) return;
 
             var currentNews = _newsItems[_currentNewsIndex];
             btnTema.Text = currentNews.Tema;
@@ -275,7 +281,7 @@ namespace PainelNoticias
         private async void NewsTimer_Tick(object sender, EventArgs e)
         {
             _currentNewsIndex++;
-            
+
             if (_currentNewsIndex >= _newsItems.Count)
             {
                 _currentNewsIndex = 0;
@@ -293,25 +299,25 @@ namespace PainelNoticias
             }
             else
             {
-                if (frmVLC != null)
-                {
-                    if (!frmVLC.ReturnCurrentTrack().Equals("") || !frmVLC.ReturnCurrentTrack().Equals("Nenhuma música tocando"))
-                    {
-                        lbMoedaCentro.Text = frmVLC.ReturnCurrentTrack();
-                    }
-                    else
-                    {
-                        ConsultaCambio();
-                    }
-                }
-                else
-                {
+              //if (frmVLC != null)
+              //{
+              //  // if (!frmVLC.ReturnCurrentTrack().Equals("") || !frmVLC.ReturnCurrentTrack().Equals("Nenhuma música tocando"))
+              //  // {
+              //  //     lbMoedaCentro.Text = frmVLC.ReturnCurrentTrack();
+              //  // }
+              //  // else
+              //  // {
+              //  //     ConsultaCambio();
+              //  // }
+              //}
+              //else
+              //{
                     ConsultaCambio();
-                }
+               // }
 
                 moeda = false;
             }
-            
+
         }
 
         private void PainelTimer_Tick(object sender, EventArgs e)
@@ -328,7 +334,7 @@ namespace PainelNoticias
         }
         private void SpotifyTimer_Tick(object sender, EventArgs e)
         {
-            
+
         }
 
         private void AtualizarPainel()
@@ -374,7 +380,7 @@ namespace PainelNoticias
                             var feedInfo = new RssFeedInfo { Fonte = fonte, Url = url, Color = cor };
                             rssFeeds.Add(new Dictionary<string, RssFeedInfo> { { theme.Name.LocalName, feedInfo } });
                         }
-                        
+
                     }
                 }
             }
@@ -422,45 +428,45 @@ namespace PainelNoticias
             string strMoeda = "";
             string strUltimaAtualizacao = "Última cotação" + Environment.NewLine;
 
-                try
+            try
+            {
+                var exc = new JsonAwesomeApi();
+
+                WebRequest request = WebRequest.Create("https://economia.awesomeapi.com.br/json/last/USD-BRL,EUR-BRL");
+                WebResponse response = request.GetResponse();
+
+                using (var reader = new StreamReader(response.GetResponseStream()))
                 {
-                    var exc = new JsonAwesomeApi();
-
-                    WebRequest request = WebRequest.Create("https://economia.awesomeapi.com.br/json/last/USD-BRL,EUR-BRL");
-                    WebResponse response = request.GetResponse();
-
-                    using (var reader = new StreamReader(response.GetResponseStream()))
-                    {
-                        string json = reader.ReadToEnd();
-                        exc = JsonConvert.DeserializeObject<JsonAwesomeApi>(json);
-                    }
-
-                    if (string.IsNullOrEmpty(exc.usdbrl.code))
-                    {
-                        throw new Exception();
-                    }
-                    else
-                    {
-                        strMoeda += $"Dólar: {Math.Round(exc.usdbrl.ask, 3)} | ";
-                        strMoeda += $"Euro: {Math.Round(exc.eurbrl.ask, 3)}";
-                        strUltimaAtualizacao += exc.usdbrl.create_date.ToString("dd/MM") + " às " + exc.usdbrl.create_date.ToString("HH:mm");
-                    }
-
-                    strUltimaAtualizacao = strUltimaAtualizacao.Replace("@", "h");
-
-                    lbMoedaCentro.Text = strMoeda;
-                   
+                    string json = reader.ReadToEnd();
+                    exc = JsonConvert.DeserializeObject<JsonAwesomeApi>(json);
                 }
-                catch (Exception exBacen)
+
+                if (string.IsNullOrEmpty(exc.usdbrl.code))
                 {
-                    lbMoedaCentro.Text = "Não foram encontrados registros na fonte atual";
+                    throw new Exception();
                 }
-            
+                else
+                {
+                    strMoeda += $"Dólar: {Math.Round(exc.usdbrl.ask, 3)} | ";
+                    strMoeda += $"Euro: {Math.Round(exc.eurbrl.ask, 3)}";
+                    strUltimaAtualizacao += exc.usdbrl.create_date.ToString("dd/MM") + " às " + exc.usdbrl.create_date.ToString("HH:mm");
+                }
+
+                strUltimaAtualizacao = strUltimaAtualizacao.Replace("@", "h");
+
+                lbMoedaCentro.Text = strMoeda;
+
+            }
+            catch (Exception exBacen)
+            {
+                lbMoedaCentro.Text = "Não foram encontrados registros na fonte atual";
             }
 
-            #region "Front-End"
+        }
 
-            private void RoundButton(Button btn)
+        #region "Front-End"
+
+        private void RoundButton(Button btn)
         {
             btn.FlatStyle = FlatStyle.Flat;
             btn.FlatAppearance.BorderSize = 0;
@@ -551,28 +557,29 @@ namespace PainelNoticias
 
         private void spotifyIcon_Click(object sender, EventArgs e)
         {
-            if (frmVLC == null)
-            {
-                frmVLC = new frmVLC();
-                if(frmVLC != null)
-                {
-                    if (!frmVLC.fechadoForcado)
-                    {
-                        frmVLC.Show();
-                    }else
-                    {
-                        frmVLC = null;
-                    }
-                       
-                }
-                
-            }
-            else
-            {
-                frmVLC.Visible = true;
+           // if (frmVLC == null)
+           // {
+           //    //frmVLC = new frmVLC();
+           //    //if (frmVLC != null)
+           //    //{
+           //    //    if (!frmVLC.fechadoForcado)
+           //    //    {
+           //    //        frmVLC.Show();
+           //    //    }
+           //    //    else
+           //    //    {
+           //    //        frmVLC = null;
+           //    //    }
+           //    //
+           //    //}
+           //
+           // }
+           // else
+           // {
+                //frmVLC.Visible = true;
 
-            }
-           
+           // }
+
         }
     }
 }
