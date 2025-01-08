@@ -114,8 +114,8 @@ Public Class VlcManager
     Private Shared Function setVLCdirectory() As DirectoryInfo
         Try
             Dim NomeProjetoVlc = "Vlc"
-            Dim diretorioSolucao As String = Path.GetDirectoryName(Path.GetDirectoryName(Path.GetDirectoryName(Application.StartupPath)))
-            Dim vlcPath As String = diretorioSolucao & $"\{NomeProjetoVlc}\vlc-portable32bit\app"
+            'Dim diretorioSolucao As String = Path.GetDirectoryName(Path.GetDirectoryName(Path.GetDirectoryName(Application.StartupPath)))
+            Dim vlcPath As String = $"C:\Program Files (x86)\VideoLAN\VLC"
             Return New DirectoryInfo(vlcPath)
         Catch ex As Exception
             Console.WriteLine("Erro ao setar o diretório do VLC")

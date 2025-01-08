@@ -24,17 +24,22 @@ Namespace Vlc.Card
             Me.Size = New Size(200, 220)
             Me.Tag = track
         End Sub
-
+        'Analisar passagem de parametros para o item
         Sub New(item As Item)
-            Me.Id = item.id
-            Me.Name = item.name
-            Me.Type = getTipo(item.type)
-            Me.Description = ""
-            Dim UrlImage = getUrlImage(item)
-            Me.Image = getImageFromUrl(UrlImage)
-            Me.Status = ECardStatus.Completed
-            Me.Size = New Size(200, 200)
-            Me.Tag = item
+            Try
+                Me.Id = item.id
+                Me.Name = item.name
+                Me.Type = getTipo(item.type)
+                Me.Description = ""
+                Dim UrlImage = getUrlImage(item)
+                Me.Image = getImageFromUrl(UrlImage)
+                Me.Status = ECardStatus.Completed
+                Me.Size = New Size(200, 200)
+                Me.Tag = item
+            Catch ex As Exception
+                Console.WriteLine(ex.Message)
+            End Try
+
         End Sub
 
         Private Function getTipo(tipo As String) As ECardType

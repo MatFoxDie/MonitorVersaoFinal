@@ -117,36 +117,36 @@ namespace MonitorVersaoFinal.Services
                     )
                 ),
                 new XElement("feed",
-                    new XElement("R7",
+                    new XElement("JornalDeBrasilia",
                         new XElement("isActive", "true"),
                         new XElement("logoPath", ""),
                         new XElement("Noticias",
-                            new XElement("url", "https://noticias.r7.com/feed.xml"),
+                            new XElement("url", "https://jornaldebrasilia.com.br/feed/"),
                             new XElement("color", "RED"),
                             new XElement("isActive", "true")
                         ),
                         new XElement("Politica",
-                            new XElement("url", "https://noticias.r7.com/politica/feed.xml"),
+                            new XElement("url", "https://jornaldebrasilia.com.br/noticias/politica-e-poder/feed/"),
                             new XElement("color", "RED"),
                             new XElement("isActive", "true")
                         ),
                         new XElement("Educacao",
-                            new XElement("url", "https://noticias.r7.com/educacao/feed.xml"),
+                            new XElement("url", "https://jornaldebrasilia.com.br/tag/educacao/feed/"),
                             new XElement("color", "RED"),
                             new XElement("isActive", "true")
                         ),
                         new XElement("Economia",
-                            new XElement("url", "https://noticias.r7.com/economia/feed.xml"),
+                            new XElement("url", "https://jornaldebrasilia.com.br/noticias/economia/feed/"),
                             new XElement("color", "RED"),
                             new XElement("isActive", "true")
                         ),
                         new XElement("Ciencia",
-                            new XElement("url", "https://noticias.r7.com/tecnologia-e-ciencia/feed.xml"),
+                            new XElement("url", "https://jornaldebrasilia.com.br/noticias/mundo/feed/"),
                             new XElement("color", "RED"),
                             new XElement("isActive", "true")
                         ),
                         new XElement("Esportes",
-                            new XElement("url", "https://esportes.r7.com/feed.xml"),
+                            new XElement("url", "https://jornaldebrasilia.com.br/torcida/feed/"),
                             new XElement("color", "RED"),
                             new XElement("isActive", "true")
                         )
@@ -266,6 +266,41 @@ namespace MonitorVersaoFinal.Services
                         ),
                         new XElement("Esportes",
                             new XElement("url", "https://www.noticiasaominuto.com.br/rss/esporte"),
+                            new XElement("color", "RED"),
+                            new XElement("isActive", "true")
+                        )
+                    )
+                ), new XElement("feed",
+                    new XElement("UOL",
+                        new XElement("isActive", "true"),
+                        new XElement("logoPath", ""),
+                        new XElement("Noticias",
+                            new XElement("url", "http://rss.home.uol.com.br/index.xml"),
+                            new XElement("color", "RED"),
+                            new XElement("isActive", "true")
+                        ),
+                        new XElement("Politica",
+                            new XElement("url", "https://www.noticiasaominuto.com.br/rss/politica"),
+                            new XElement("color", "RED"),
+                            new XElement("isActive", "true")
+                        ),
+                        new XElement("Economia",
+                            new XElement("url", "https://www.noticiasaominuto.com.br/rss/economia"),
+                            new XElement("color", "RED"),
+                            new XElement("isActive", "true")
+                        ),
+                        new XElement("Ciencia",
+                            new XElement("url", "https://www.noticiasaominuto.com.br/rss/tech"),
+                            new XElement("color", "RED"),
+                            new XElement("isActive", "true")
+                        ),
+                        new XElement("Esportes",
+                            new XElement("url", "https://www.noticiasaominuto.com.br/rss/esporte"),
+                            new XElement("color", "RED"),
+                            new XElement("isActive", "true")
+                        ),
+                        new XElement("Carros",
+                            new XElement("url", "https://motor1.uol.com.br/rss/articles/all/"),
                             new XElement("color", "RED"),
                             new XElement("isActive", "true")
                         )

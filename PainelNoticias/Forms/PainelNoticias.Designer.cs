@@ -35,13 +35,13 @@
             this.pbLogo = new System.Windows.Forms.PictureBox();
             this.btnConfiguracao = new System.Windows.Forms.Button();
             this.pnlTexto = new System.Windows.Forms.Panel();
+            this.pnlQrCodeFora = new System.Windows.Forms.Panel();
+            this.pnQrCode = new System.Windows.Forms.PictureBox();
+            this.pnlBarra = new System.Windows.Forms.Panel();
             this.btnTema = new System.Windows.Forms.Button();
             this.lblTitulo = new System.Windows.Forms.Label();
             this.tblpPrincipal = new System.Windows.Forms.TableLayoutPanel();
             this.pnlTableLayoutPanel2 = new System.Windows.Forms.Panel();
-            this.pnlBarra = new System.Windows.Forms.Panel();
-            this.pnlQrCodeFora = new System.Windows.Forms.Panel();
-            this.pnQrCode = new System.Windows.Forms.PictureBox();
             this.pnlPainelInferior.SuspendLayout();
             this.tblPainelInferior.SuspendLayout();
             this.pnlCotacao.SuspendLayout();
@@ -52,10 +52,10 @@
             this.pnlPrincipal.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbLogo)).BeginInit();
             this.pnlTexto.SuspendLayout();
-            this.tblpPrincipal.SuspendLayout();
-            this.pnlTableLayoutPanel2.SuspendLayout();
             this.pnlQrCodeFora.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pnQrCode)).BeginInit();
+            this.tblpPrincipal.SuspendLayout();
+            this.pnlTableLayoutPanel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // pnlPainelInferior
@@ -300,6 +300,36 @@
             this.pnlTexto.Size = new System.Drawing.Size(960, 323);
             this.pnlTexto.TabIndex = 6;
             // 
+            // pnlQrCodeFora
+            // 
+            this.pnlQrCodeFora.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.pnlQrCodeFora.BackColor = System.Drawing.Color.Transparent;
+            this.pnlQrCodeFora.Controls.Add(this.pnQrCode);
+            this.pnlQrCodeFora.Location = new System.Drawing.Point(740, 76);
+            this.pnlQrCodeFora.Name = "pnlQrCodeFora";
+            this.pnlQrCodeFora.Size = new System.Drawing.Size(190, 190);
+            this.pnlQrCodeFora.TabIndex = 8;
+            // 
+            // pnQrCode
+            // 
+            this.pnQrCode.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.pnQrCode.BackColor = System.Drawing.Color.Transparent;
+            this.pnQrCode.Location = new System.Drawing.Point(35, 35);
+            this.pnQrCode.Name = "pnQrCode";
+            this.pnQrCode.Size = new System.Drawing.Size(125, 125);
+            this.pnQrCode.TabIndex = 0;
+            this.pnQrCode.TabStop = false;
+            // 
+            // pnlBarra
+            // 
+            this.pnlBarra.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.pnlBarra.BackColor = System.Drawing.Color.Red;
+            this.pnlBarra.Location = new System.Drawing.Point(56, 272);
+            this.pnlBarra.Name = "pnlBarra";
+            this.pnlBarra.Size = new System.Drawing.Size(874, 21);
+            this.pnlBarra.TabIndex = 6;
+            // 
             // btnTema
             // 
             this.btnTema.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -358,36 +388,6 @@
             this.pnlTableLayoutPanel2.Size = new System.Drawing.Size(960, 500);
             this.pnlTableLayoutPanel2.TabIndex = 0;
             // 
-            // pnlBarra
-            // 
-            this.pnlBarra.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.pnlBarra.BackColor = System.Drawing.Color.Red;
-            this.pnlBarra.Location = new System.Drawing.Point(56, 272);
-            this.pnlBarra.Name = "pnlBarra";
-            this.pnlBarra.Size = new System.Drawing.Size(874, 21);
-            this.pnlBarra.TabIndex = 6;
-            // 
-            // pnlQrCodeFora
-            // 
-            this.pnlQrCodeFora.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.pnlQrCodeFora.BackColor = System.Drawing.Color.Transparent;
-            this.pnlQrCodeFora.Controls.Add(this.pnQrCode);
-            this.pnlQrCodeFora.Location = new System.Drawing.Point(740, 76);
-            this.pnlQrCodeFora.Name = "pnlQrCodeFora";
-            this.pnlQrCodeFora.Size = new System.Drawing.Size(190, 190);
-            this.pnlQrCodeFora.TabIndex = 8;
-            // 
-            // pnQrCode
-            // 
-            this.pnQrCode.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.pnQrCode.BackColor = System.Drawing.Color.Transparent;
-            this.pnQrCode.Location = new System.Drawing.Point(35, 35);
-            this.pnQrCode.Name = "pnQrCode";
-            this.pnQrCode.Size = new System.Drawing.Size(125, 125);
-            this.pnQrCode.TabIndex = 0;
-            this.pnQrCode.TabStop = false;
-            // 
             // PainelNoticias
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -410,10 +410,10 @@
             this.pnlPrincipal.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pbLogo)).EndInit();
             this.pnlTexto.ResumeLayout(false);
-            this.tblpPrincipal.ResumeLayout(false);
-            this.pnlTableLayoutPanel2.ResumeLayout(false);
             this.pnlQrCodeFora.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pnQrCode)).EndInit();
+            this.tblpPrincipal.ResumeLayout(false);
+            this.pnlTableLayoutPanel2.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }

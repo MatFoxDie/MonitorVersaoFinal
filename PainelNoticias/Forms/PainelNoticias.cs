@@ -20,12 +20,14 @@ using Newtonsoft.Json;
 using MonitorVersaoFinal.Models;
 using System.Text.RegularExpressions;
 using System.Globalization;
+using vlcPlayer;
 
 
 namespace PainelNoticias
 {
     public partial class PainelNoticias : Form
     {
+        LogHelper logHelper = new LogHelper();
         private readonly INewsService _newsService;
         private List<NewsItem> _newsItems;
         private int _currentNewsIndex;
@@ -40,6 +42,8 @@ namespace PainelNoticias
         private int _tempoAtualizacaoClima;
         private int _tempoAtualizacaoSpotify;
         private CircularProgressBar _progressBar;
+        frmVLC frmVLC;
+
 
         public PainelNoticias(INewsService newsService)
         {
@@ -77,55 +81,61 @@ namespace PainelNoticias
 
         }
 
+
         private async void Form1_Load(object sender, EventArgs e)
         {
-            try
-            {
+            // Faz um get usando essa url para eu testar https://jornaldebrasilia.com.br/feed/
 
-                await LoadConfiguracoesAsync();
-
-                if (_tempoAtualizacaoMoeda.Equals(0))
-                    _moedaTimer.Interval = 30000 / 2;
-                else
-                    _moedaTimer.Interval = _tempoAtualizacaoMoeda / 2;
-
-                _moedaTimer.Start();
-
-                if (_tempoAtualizacaoPainel.Equals(0))
-                    _painelTimer.Interval = 30000;
-                else
-                    _painelTimer.Interval = _tempoAtualizacaoPainel;
-
-                _painelTimer.Start();
-
-
-                if (_tempoAtualizacaoClima.Equals(0))
-                    _climaTimer.Interval = 1800000;
-                else
-                    _climaTimer.Interval = _tempoAtualizacaoClima;
-                _climaTimer.Start();
-
-                ClimaTimer_Tick(sender, e);
-
-                RoundButton(btnTema);
-
-                await LoadNewsAsync();
-                DisplayCurrentNews();
-                if (_tempoAtualizacaoNoticias.Equals(0))
-                    _newsTimer.Interval = 30000;
-                else
-                    _newsTimer.Interval = _tempoAtualizacaoNoticias;
-                _newsTimer.Start();
-
+  
+                try
+                {
+                
+                    //GoogleApiService.ExecuteMethod();
+                
+                    await LoadConfiguracoesAsync();
+                
+                    if (_tempoAtualizacaoMoeda.Equals(0))
+                        _moedaTimer.Interval = 30000 / 2;
+                    else
+                        _moedaTimer.Interval = _tempoAtualizacaoMoeda / 2;
+                
+                    _moedaTimer.Start();
+                
+                    if (_tempoAtualizacaoPainel.Equals(0))
+                        _painelTimer.Interval = 30000;
+                    else
+                        _painelTimer.Interval = _tempoAtualizacaoPainel;
+                
+                    _painelTimer.Start();
+                
+                
+                    if (_tempoAtualizacaoClima.Equals(0))
+                        _climaTimer.Interval = 1800000;
+                    else
+                        _climaTimer.Interval = _tempoAtualizacaoClima;
+                    _climaTimer.Start();
+                
+                    ClimaTimer_Tick(sender, e);
+                
+                    RoundButton(btnTema);
+                
+                    await LoadNewsAsync();
+                    DisplayCurrentNews();
+                    if (_tempoAtualizacaoNoticias.Equals(0))
+                        _newsTimer.Interval = 30000;
+                    else
+                        _newsTimer.Interval = _tempoAtualizacaoNoticias;
+                    _newsTimer.Start();
+                
+                }
+                catch (Exception)
+                {
+                
+                    throw;
+                }
+                
+                
             }
-            catch (Exception)
-            {
-
-                throw;
-            }
-
-
-        }
         private async Task LoadConfiguracoesAsync()
         {
             var xmlService = new XmlReaderService();
@@ -165,6 +175,10 @@ namespace PainelNoticias
             btnTema.Text = currentNews.Tema;
             lblTitulo.Text = currentNews.Title;
 
+            logHelper.WriteLog("Notícia atual: " + currentNews.Title);
+            logHelper.WriteLog("Tema atual: " + currentNews.Tema);
+
+
             // Aplique a cor lida do XML
             btnTema.BackColor = ColorTranslator.FromHtml(currentNews.Cor);
             pnlBarra.BackColor = ColorTranslator.FromHtml(currentNews.Cor);
@@ -172,22 +186,28 @@ namespace PainelNoticias
 
             try
             {
+
                 var image = await LoadImageFromUrlAsync(currentNews.ImageUrl);
                 if (image != null)
                 {
+                    logHelper.WriteLog("Imagem foi carregada: " + currentNews.ImageUrl);
                     pnlPrincipal.BackgroundImage = image;
                 }
                 else
                 {
+                    logHelper.WriteLog("Imagem não foi carregada: " + currentNews.ImageUrl);
                     pnlPrincipal.BackgroundImage = Image.FromFile(Path.Combine(Path.Combine(Directory.GetCurrentDirectory(), "Resources\\Painel\\"), "news_back.jpg"));
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                logHelper.WriteLog("Imagem não foi carregada: " + currentNews.ImageUrl);
+                logHelper.WriteLog("Erro ao carregar a imagem: " + ex.Message);
                 pnlPrincipal.BackgroundImage = Image.FromFile(Path.Combine(Path.Combine(Directory.GetCurrentDirectory(), "Resources\\Painel\\"), "news_back.jpg"));
             }
 
             VerificaFonteLogo(currentNews.Fonte);
+            logHelper.WriteLog("Logo da fonte: " + currentNews.Fonte);
 
             Image imageQr = GerarQRCode(pnQrCode.Width, pnQrCode.Height, currentNews.Link);
             //verifica se a imagem foi gerada
@@ -211,10 +231,10 @@ namespace PainelNoticias
                 //Caminho da logo do G1 Resources/Painel/Logos/g1.png
                 pbLogo.Image = Image.FromFile(Path.Combine(Path.Combine(Directory.GetCurrentDirectory(), "Resources\\Painel\\Logos\\"), "G1.png"));
             }
-            //Outras fontes: R7, Gazeta, Agencia, RadioAgencia, NoticiasMinuto
-            else if (fonte.Equals("R7"))
+            //Outras fontes: JornalDeBrasilia, Gazeta, Agencia, RadioAgencia, NoticiasMinuto
+            else if (fonte.Equals("JornalDeBrasilia"))
             {
-                pbLogo.Image = Image.FromFile(Path.Combine(Path.Combine(Directory.GetCurrentDirectory(), "Resources\\Painel\\Logos\\"), "R7.png"));
+                pbLogo.Image = Image.FromFile(Path.Combine(Path.Combine(Directory.GetCurrentDirectory(), "Resources\\Painel\\Logos\\"), "JornalDeBrasilia.png"));
             }
             else if (fonte.Equals("Gazeta"))
             {
@@ -299,21 +319,21 @@ namespace PainelNoticias
             }
             else
             {
-              //if (frmVLC != null)
-              //{
-              //  // if (!frmVLC.ReturnCurrentTrack().Equals("") || !frmVLC.ReturnCurrentTrack().Equals("Nenhuma música tocando"))
-              //  // {
-              //  //     lbMoedaCentro.Text = frmVLC.ReturnCurrentTrack();
-              //  // }
-              //  // else
-              //  // {
-              //  //     ConsultaCambio();
-              //  // }
-              //}
-              //else
-              //{
-                    ConsultaCambio();
-               // }
+              if (frmVLC != null)
+              {
+                 if (!frmVLC.ReturnCurrentTrack().Equals("") || !frmVLC.ReturnCurrentTrack().Equals("Nenhuma música tocando"))
+                 {
+                     lbMoedaCentro.Text = frmVLC.ReturnCurrentTrack();
+                 }
+                 else
+                 {
+                     ConsultaCambio();
+                 }
+              }
+              else
+              {
+                  ConsultaCambio();
+               }
 
                 moeda = false;
             }
@@ -328,6 +348,15 @@ namespace PainelNoticias
         {
             clsClimaTempo climaTempo = new clsClimaTempo();
             Clima clima = climaTempo.ConsultarClima("São Paulo");
+
+            if (clima == null)
+            {
+                lblDescricaoClima.Text = "Clima não encontrado";
+                lblTemperaturaCidade.Text = "SP, --°C";
+                
+                return;
+            }
+
             lblDescricaoClima.Text = clima.DescricaoClima;
             lblTemperaturaCidade.Text = "SP, " + clima.Temperatura + "°C";
             pictureBox1.Image = clima.Image;
@@ -557,28 +586,28 @@ namespace PainelNoticias
 
         private void spotifyIcon_Click(object sender, EventArgs e)
         {
-           // if (frmVLC == null)
-           // {
-           //    //frmVLC = new frmVLC();
-           //    //if (frmVLC != null)
-           //    //{
-           //    //    if (!frmVLC.fechadoForcado)
-           //    //    {
-           //    //        frmVLC.Show();
-           //    //    }
-           //    //    else
-           //    //    {
-           //    //        frmVLC = null;
-           //    //    }
-           //    //
-           //    //}
-           //
-           // }
-           // else
-           // {
-                //frmVLC.Visible = true;
+            if (frmVLC == null)
+            {
+               frmVLC = new frmVLC();
+               if (frmVLC != null)
+               {
+                   if (!frmVLC.fechadoForcado)
+                   {
+                       frmVLC.Show();
+                   }
+                   else
+                   {
+                       frmVLC = null;
+                   }
+               
+               }
+           
+            }
+            else
+            {
+              frmVLC.Visible = true;
 
-           // }
+            }
 
         }
     }
