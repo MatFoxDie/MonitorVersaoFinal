@@ -36,6 +36,7 @@
             this.btnConfiguracao = new System.Windows.Forms.Button();
             this.pnlTexto = new System.Windows.Forms.Panel();
             this.pnlQrCodeFora = new System.Windows.Forms.Panel();
+            this.pnlProgressBar = new System.Windows.Forms.Panel();
             this.pnQrCode = new System.Windows.Forms.PictureBox();
             this.pnlBarra = new System.Windows.Forms.Panel();
             this.btnTema = new System.Windows.Forms.Button();
@@ -304,11 +305,20 @@
             // 
             this.pnlQrCodeFora.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.pnlQrCodeFora.BackColor = System.Drawing.Color.Transparent;
+            this.pnlQrCodeFora.Controls.Add(this.pnlProgressBar);
             this.pnlQrCodeFora.Controls.Add(this.pnQrCode);
             this.pnlQrCodeFora.Location = new System.Drawing.Point(740, 76);
             this.pnlQrCodeFora.Name = "pnlQrCodeFora";
             this.pnlQrCodeFora.Size = new System.Drawing.Size(190, 190);
             this.pnlQrCodeFora.TabIndex = 8;
+            // 
+            // pnlProgressBar
+            // 
+            this.pnlProgressBar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.pnlProgressBar.Location = new System.Drawing.Point(0, 166);
+            this.pnlProgressBar.Name = "pnlProgressBar";
+            this.pnlProgressBar.Size = new System.Drawing.Size(190, 15);
+            this.pnlProgressBar.TabIndex = 9;
             // 
             // pnQrCode
             // 
@@ -324,7 +334,7 @@
             // 
             this.pnlBarra.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.pnlBarra.BackColor = System.Drawing.Color.Red;
+            this.pnlBarra.BackColor = System.Drawing.Color.DarkGray;
             this.pnlBarra.Location = new System.Drawing.Point(56, 272);
             this.pnlBarra.Name = "pnlBarra";
             this.pnlBarra.Size = new System.Drawing.Size(874, 21);
@@ -443,5 +453,6 @@
         private System.Windows.Forms.Panel pnlQrCodeFora;
         private System.Windows.Forms.PictureBox pnQrCode;
         internal System.Windows.Forms.Panel pnlBarra;
+        private System.Windows.Forms.Panel pnlProgressBar;
     }
 }

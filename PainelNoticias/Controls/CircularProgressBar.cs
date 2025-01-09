@@ -8,13 +8,22 @@ public class CircularProgressBar : Control
     private int _progress;
     private Timer _timer;
 
+    // Propriedades customizáveis
+    public int TotalTime { get; set; } = 30; // Tempo total em segundos
+    public Color ProgressColor { get; set; } = Color.Green;
+    public Color BackgroundColor { get; set; } = Color.Gray;
+    public int ArcThickness { get; set; } = 6;
+
+    // Evento disparado ao completar o progresso
+    public event EventHandler ProgressCompleted;
+
     public int Progress
     {
         get => _progress;
         set
         {
             _progress = value;
-            Invalidate();
+            Invalidate(); // Redesenha o controle
         }
     }
 
@@ -23,10 +32,9 @@ public class CircularProgressBar : Control
         SetStyle(ControlStyles.UserPaint | ControlStyles.AllPaintingInWmPaint | ControlStyles.OptimizedDoubleBuffer | ControlStyles.SupportsTransparentBackColor, true);
         DoubleBuffered = true;
         BackColor = Color.Transparent;
-        _progress = 0;
 
         _timer = new Timer();
-        _timer.Interval = 1000; // 1 second interval
+        _timer.Interval = 100; // Intervalo em milissegundos
         _timer.Tick += Timer_Tick;
     }
 
@@ -39,12 +47,19 @@ public class CircularProgressBar : Control
 
     private void DrawProgressBar(Graphics g)
     {
-        float percentage = _progress / 30f; // Assuming a 30 seconds countdown
+        // Fundo do arco
+        using (Pen backgroundPen = new Pen(BackgroundColor, ArcThickness))
+        {
+            g.DrawArc(backgroundPen, ArcThickness / 2, ArcThickness / 2, Width - ArcThickness, Height - ArcThickness, 0, 360);
+        }
+
+        // Progresso do arco
+        float percentage = (float)_progress / (TotalTime * 10); // 10 passos por segundo
         int sweepAngle = (int)(360 * percentage);
 
-        using (Pen pen = new Pen(Color.Green, 6))
+        using (Pen progressPen = new Pen(ProgressColor, ArcThickness))
         {
-            g.DrawArc(pen, 3, 3, Width - 6, Height - 6, -90, sweepAngle);
+            g.DrawArc(progressPen, ArcThickness / 2, ArcThickness / 2, Width - ArcThickness, Height - ArcThickness, -90, sweepAngle);
         }
     }
 
@@ -61,9 +76,10 @@ public class CircularProgressBar : Control
 
     private void Timer_Tick(object sender, EventArgs e)
     {
-        if (_progress >= 30)
+        if (_progress >= TotalTime * 10) // Multiplica pelo fator de tempo do timer
         {
             _timer.Stop();
+            ProgressCompleted?.Invoke(this, EventArgs.Empty); // Dispara o evento de conclusão
         }
         else
         {

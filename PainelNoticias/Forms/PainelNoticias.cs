@@ -21,6 +21,7 @@ using MonitorVersaoFinal.Models;
 using System.Text.RegularExpressions;
 using System.Globalization;
 using vlcPlayer;
+using PainelNoticias.Controls;
 
 
 namespace PainelNoticias
@@ -41,7 +42,8 @@ namespace PainelNoticias
         private int _tempoAtualizacaoPainel;
         private int _tempoAtualizacaoClima;
         private int _tempoAtualizacaoSpotify;
-        private CircularProgressBar _progressBar;
+        //private CircularProgressBar _progressBar;
+        private LinearProgressBar _progressBar;
         frmVLC frmVLC;
 
 
@@ -68,15 +70,28 @@ namespace PainelNoticias
 
             // Inicialize a barra de progresso circular
 
+            //_progressBar = new CircularProgressBar
+            //{
+            //    Width = 100,
+            //    Height = 100,
+            //    TotalTime = 30, // 15 segundos
+            //    ProgressColor = Color.Red,
+            //    BackgroundColor = Color.LightGray,
+            //    ArcThickness = 8,
+            //    Location = new Point(50, 50)
+            //};
 
-            _progressBar = new CircularProgressBar
+            _progressBar = new LinearProgressBar
             {
-                Width = (int)(pnQrCode.Width * 1.35),
-                Height = (int)(pnQrCode.Height * 1.35),
-                BackColor = Color.Transparent
+                Width = 100,
+                Height = 100,
+                TotalTime = 27, // 15 segundos
+                ProgressColor = Color.Red,
+                BackgroundColor = Color.LightGray,
+                Location = new Point(50, 50)
             };
 
-            pnlQrCodeFora.Controls.Add(_progressBar);
+            pnlBarra.Controls.Add(_progressBar);
             _progressBar.Dock = DockStyle.Fill;
 
         }
@@ -252,6 +267,10 @@ namespace PainelNoticias
             {
                 pbLogo.Image = Image.FromFile(Path.Combine(Path.Combine(Directory.GetCurrentDirectory(), "Resources\\Painel\\Logos\\"), "NoticiasAoMinuto.png"));
             }
+            else if (fonte.Equals("UOL"))
+            {
+                pbLogo.Image = Image.FromFile(Path.Combine(Path.Combine(Directory.GetCurrentDirectory(), "Resources\\Painel\\Logos\\"), "UOL.png"));
+            }
             else
             {
                 pbLogo.Image = Image.FromFile(Path.Combine(Path.Combine(Directory.GetCurrentDirectory(), "Resources\\Painel\\Logos\\"), "Logo.png"));
@@ -277,6 +296,7 @@ namespace PainelNoticias
         }
         public Bitmap GerarQRCode(int width, int height, string text)
         {
+            _progressBar.Reset();
             try
             {
                 var bw = new ZXing.BarcodeWriter();

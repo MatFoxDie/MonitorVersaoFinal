@@ -97,6 +97,9 @@
     <Compile Include="Controls\CircularProgressBar.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Controls\LinearPRogressBar.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Forms\PainelNoticias.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -188,6 +191,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\Painel\Logos\RadioAgencia.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Painel\Logos\UOL.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\Painel\news_back.jpg">

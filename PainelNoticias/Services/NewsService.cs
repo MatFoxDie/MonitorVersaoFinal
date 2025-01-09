@@ -171,6 +171,16 @@ namespace PainelNoticias.Services
                     return contentImageUrl;
             }
 
+            // Quinta tentativa: extrair imagem dos links
+            foreach (var link in item.Links)
+            {
+                var urlString = link.Uri.AbsoluteUri.ToString();
+                if (urlString.Substring(urlString.Length - 3).Equals("jpg") || urlString.Substring(urlString.Length - 3).Equals("png"))
+                {
+                    return urlString;
+                }
+            }
+
             return string.Empty;
         }
 

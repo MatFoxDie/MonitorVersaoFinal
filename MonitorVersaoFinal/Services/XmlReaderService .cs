@@ -274,31 +274,6 @@ namespace MonitorVersaoFinal.Services
                     new XElement("UOL",
                         new XElement("isActive", "true"),
                         new XElement("logoPath", ""),
-                        new XElement("Noticias",
-                            new XElement("url", "http://rss.home.uol.com.br/index.xml"),
-                            new XElement("color", "RED"),
-                            new XElement("isActive", "true")
-                        ),
-                        new XElement("Politica",
-                            new XElement("url", "https://www.noticiasaominuto.com.br/rss/politica"),
-                            new XElement("color", "RED"),
-                            new XElement("isActive", "true")
-                        ),
-                        new XElement("Economia",
-                            new XElement("url", "https://www.noticiasaominuto.com.br/rss/economia"),
-                            new XElement("color", "RED"),
-                            new XElement("isActive", "true")
-                        ),
-                        new XElement("Ciencia",
-                            new XElement("url", "https://www.noticiasaominuto.com.br/rss/tech"),
-                            new XElement("color", "RED"),
-                            new XElement("isActive", "true")
-                        ),
-                        new XElement("Esportes",
-                            new XElement("url", "https://www.noticiasaominuto.com.br/rss/esporte"),
-                            new XElement("color", "RED"),
-                            new XElement("isActive", "true")
-                        ),
                         new XElement("Carros",
                             new XElement("url", "https://motor1.uol.com.br/rss/articles/all/"),
                             new XElement("color", "RED"),
